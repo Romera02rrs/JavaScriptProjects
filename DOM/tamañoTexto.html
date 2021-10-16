@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar tamaño del texto</title>
+</head>
+<body style="margin: 3%; font-family:'JetBrains Mono', 'monospace', 'Arial';">
+    <h1>Ejercicio cambiar tamaño de texto</h1>
+    <h3>Utiliza los botones para cambiar el tamaño del texto.</h3>
+    <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <button id="mas">Agrandar</button>
+    <button id="original">Tamaño Original</button>
+    <button id="menos">Reducir</button>
+    <script>
+        document.getElementById("mas").addEventListener("click", mas);
+        document.getElementById("original").addEventListener("click", original);
+        document.getElementById("menos").addEventListener("click", menos);
+        var textos = document.getElementsByTagName("p");                        // Obtener una array de elementos con etiquetas "<p>";
+        var primerTexto = textos[0];                                            // Obtener el primer y unico valor de la array
+        var atr = primerTexto.getAttribute("style");                            // Obtener el atributo del elemento
+        var tamaño = 16;                                                        // Establecer un tamaño por defecto
+
+        function mas(){
+            tamaño += 0.5;                                                      // Agrandar tamaño
+            primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo al elemento
+        }
+        function original(){
+            tamaño = 16;                                                        // Establecer tamaño por defecto
+            primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo
+        }
+        function menos(){
+            tamaño -= 0.5;                                                      // Reducir tamaño
+            primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo
+        }
+    </script>
+</body>
+</html>
