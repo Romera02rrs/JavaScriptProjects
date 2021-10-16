@@ -8,8 +8,7 @@
 </head>
 <body style="margin: 3%; font-family:'JetBrains Mono', 'monospace', 'Arial';">
     <h1>Ejercicio cambiar tamaño de texto</h1>
-    <h3>Utiliza los botones para cambiar el tamaño del texto.</h3>
-    <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p style="font-size: 16px;">Utiliza los botones para cambiar el tamaño del texto.</p>
     <button id="mas">Agrandar</button>
     <button id="original">Tamaño Original</button>
     <button id="menos">Reducir</button>
@@ -23,16 +22,24 @@
         var tamaño = 16;                                                        // Establecer un tamaño por defecto
 
         function mas(){
-            tamaño += 0.5;                                                      // Agrandar tamaño
-            primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo al elemento
+            if(tamaño >= 25){                                                   // Si el tamaño es mayor o igual que 25
+                window.alert("Limite alcanzado");                               // Salta una alerta y termina la función
+            }else{
+                tamaño += 0.5;                                                  // Agrandar tamaño
+                primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");  // Establecer atributo al elemento
+            }
         }
         function original(){
             tamaño = 16;                                                        // Establecer tamaño por defecto
             primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo
         }
         function menos(){
-            tamaño -= 0.5;                                                      // Reducir tamaño
-            primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");      // Establecer atributo
+            if(tamaño <= 7){                                                    // Si el tamaño es menor o igual que 7
+                window.alert("Limite alcanzado");                               // Salta una alerta y termina la función
+            }else{
+                tamaño -= 0.5;                                                  // Reducir tamaño
+                primerTexto.setAttribute("style", "font-size: "+tamaño+"px;");  // Establecer atributo
+            }
         }
     </script>
 </body>
