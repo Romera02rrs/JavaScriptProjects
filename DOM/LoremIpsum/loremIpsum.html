@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Lorem Ipsum</title>
+</head>
+
+
+<body style="margin: 3%; font-family:'JetBrains Mono', 'monospace', 'Arial';">
+    <h1>Mostar y ocultar textos </h1>
+    <p class="mostrar">
+        Irure pariatur consequat est minim consectetur in. Aliqua aute elit elit duis duis cillum.<br> Sint ex occaecat
+        eiusmod adipisicing duis ex veniam dolore Lorem tempor incididunt nisi veniam aute.<br> Laboris dolore id mollit
+        amet dolor id ea consequat ullamco nostrud amet sunt sit.
+    </p>
+    <p class="mostrar">
+        Sunt est est ex amet nostrud est cillum. Mollit in esse irure excepteur pariatur.<br> Incididunt fugiat nostrud
+        amet officia exercitation non ea enim in laborum officia.<br> Proident proident veniam irure tempor et.<br> Sunt
+        ipsum in proident exercitation sunt fugiat sit tempor magna deserunt qui et.<br> Labore cupidatat excepteur ea
+        reprehenderit.
+    </p>
+    <button id="p1" style="margin-right: 2%;">Mostrar/Ocultar párrafo 1</button><button id="p2">Mostrar/Ocultar párrafo 2</button>
+
+    <script>
+        document.getElementById("p1").addEventListener("click", btn1);
+        document.getElementById("p2").addEventListener("click", btn2);
+        var parrafos = document.getElementsByTagName("p");
+        var p1 = parrafos[0];
+        var p2 = parrafos[1];
+        var p1Visible = true;
+        var p2Visible = true;
+
+        function btn1(){
+            if(p1Visible){
+                p1Visible = false;
+                p1.setAttribute("class", "ocultar");
+            }else{
+                p1Visible = true;
+                p1.setAttribute("class", "mostar");
+            }
+        }
+        function btn2(){
+            if(p2Visible){
+                p2Visible = false;
+                p2.setAttribute("class", "ocultar");
+            }else{
+                p2Visible = true;
+                p2.setAttribute("class", "mostar");
+            }
+        }
+    </script>
+</body>
+
+</html>
