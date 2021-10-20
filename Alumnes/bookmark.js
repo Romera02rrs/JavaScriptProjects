@@ -30,20 +30,33 @@ function crearDireccion(){
     }
 
     direcciones.push(direccion);
-    console.log(direcciones);
     localStorage.setItem("direcciones", JSON.stringify(direcciones));
     insertarDireccion();
 }
 
-function borrarDireccion(){
+function borrarDireccion(input){
 
+    var direcciones = JSON.parse(localStorage.getItem("direcciones"));
 
+    var lista = document.getElementById("llista");
+
+    var lis = lista.childNodes;
+
+    var direccion = lis[input.id];
+    direccion.parentNode.removeChild(direccion);
+    
+    direcciones.splice(input.id, 1);
+
+    console.table(direcciones);
+    localStorage.setItem("direcciones", JSON.stringify(direcciones));
+
+    insertarDireccion();
 }
 
 function insertarDireccion(){
 
-   
     var lista = document.getElementById("llista");
+    lista.replaceChildren();
     var direcciones = JSON.parse(localStorage.getItem("direcciones"));
 
     if(direcciones){
