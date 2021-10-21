@@ -2,6 +2,8 @@ window.onload = main; //Juantyheryhert
 var direcciones = new Array();
 var id = -1;
 
+//Hola
+// Como estas
 function main(){
     
     document.getElementById("crearAdresa").addEventListener("click", crearDireccion);
