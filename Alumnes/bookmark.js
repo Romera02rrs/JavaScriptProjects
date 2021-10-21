@@ -1,4 +1,4 @@
-window.onload = main; //Juan
+window.onload = main; //Juantyheryhert
 var direcciones = new Array();
 var id = -1;
 
