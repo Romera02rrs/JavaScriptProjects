@@ -4,19 +4,28 @@ var id = -1;
 
 function main(){
     
-    document.getElementById("crearAdresa").addEventListener("click", crearDireccion);
+    document.getElementById("nomAdresa").addEventListener("click", crearDireccion);;
+    crearDireccion();
 }
 
-function crearDireccion(){
+function setId(){
 
     var direcciones = JSON.parse(localStorage.getItem("direcciones"));
 
     if(direcciones){                          // Si ya hay objetos en la array direcciones, se recuperan del Local Storage
+        console.log("dir");
         var id = direcciones.length - 1;      // Se continua con el contador del id partiendo del id del último objeto de la array
+        insertarDireccion();
+        return direcciones;
     }else{
-        var direcciones = new Array();        // Si no hay ninguna array de objetos, se crea
-        var id = -1;                          // Se establece un contador desde 0    
+        return direcciones = new Array();        // Si no hay ninguna array de objetos, se crea
+        var id = -1;                             // Se establece un contador desde 0    
     }
+}
+
+function crearDireccion(){
+
+    var direcciones = setId();
 
     var nombreInput = document.getElementById("nomAdresa");
     var urlInput = document.getElementById("urlAdresa");
