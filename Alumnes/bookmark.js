@@ -1,4 +1,4 @@
-window.onload = main; //AA
+window.onload = main; //AA2
 var direcciones = new Array();
 var id = -1;
 
