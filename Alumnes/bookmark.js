@@ -73,6 +73,8 @@ function insertarDireccion(){
             input.setAttribute("onclick", "borrarDireccion(this)");
             input.setAttribute("name", direccion.nombre);
             input.setAttribute("url", direccion.url);
+
+            console.log("prueba");
             
 
             var li = document.createElement("li");
