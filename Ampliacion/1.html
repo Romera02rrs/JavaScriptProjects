@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    <p>Cuando acabe el contador se le redigirá a uniwebsidad.com</p>
+    <h2>Contador: <span id="contador">30</span> segundos</h2>
+    <button id="btn">Parar</button>
+
+    <script>
+
+        document.getElementById("btn").addEventListener("click", click);
+        var contador = document.getElementById("contador");
+        var interval;
+        var segundos = 30;
+
+        function click(){
+
+            clearInterval(interval);
+            var texto00 = contador.appendChild(document.createTextNode(segundos));
+            contador.replaceChildren(texto00, texto00);
+        }
+
+        function temporizador(){
+
+            segundos --
+            var segundosTxt = document.createTextNode(segundos);
+            contador.replaceChildren(segundosTxt, segundosTxt);
+
+            if(segundos == 0){
+                window.open("https://uniwebsidad.com/" , "Uniwebsidad" , "width=800,height=500");
+                click();
+            }
+        }
+
+        interval = setInterval(temporizador, 1000);
+
+    </script>
+</body>
+</html>

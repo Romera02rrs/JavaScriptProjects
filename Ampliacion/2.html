@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    <h2>Visitas de la web: <span id="contador">0</span></h2>
+
+    <script>
+        window.onload = main;
+
+        var contadorEl = document.getElementById("contador");
+        var visitas;
+
+        function main(){
+
+            nuevaVisita();
+        }
+
+        function nuevaVisita(){
+
+            visitas = JSON.parse(localStorage.getItem(visitas));
+            visitas ++;
+            localStorage.setItem("visitas", JSON.stringify(visitas));
+
+            textoVisitas = document.createTextNode(visitas);
+            contadorEl.appendChild(visitas);
+            contadorEl.replaceChildren(visitas, visitas);
+        }
+        
+    </script>
+</body>
+</html>

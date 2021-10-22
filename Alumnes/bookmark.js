@@ -23,7 +23,7 @@ function setId(){
         direcciones = new Array();
     }
 
-    localStorage.setItem("direcciones", JSON.stringify(direcciones)); // Añadimos la array de dirdcuto en el Local Storage
+    localStorage.setItem("direcciones", JSON.stringify(direcciones)); 
 
     return direcciones;
 }
