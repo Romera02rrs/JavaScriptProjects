@@ -21,13 +21,15 @@
 
         function nuevaVisita(){
 
+            
             visitas = JSON.parse(localStorage.getItem(visitas));
             visitas ++;
+            console.log(visitas);
             localStorage.setItem("visitas", JSON.stringify(visitas));
 
             textoVisitas = document.createTextNode(visitas);
-            contadorEl.appendChild(visitas);
-            contadorEl.replaceChildren(visitas, visitas);
+            contadorEl.appendChild(textoVisitas);
+            contadorEl.replaceChildren(textoVisitas, textoVisitas);
         }
         
     </script>

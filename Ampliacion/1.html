@@ -9,11 +9,12 @@
     <h1>Ejercicio 1</h1>
     <p>Cuando acabe el contador se le redigirá a uniwebsidad.com</p>
     <h2>Contador: <span id="contador">30</span> segundos</h2>
-    <button id="btn">Parar</button>
-
+    <button id="btnIniciar">Iniciar</button>
+    <button id="btnParar">Parar</button>
     <script>
 
-        document.getElementById("btn").addEventListener("click", click);
+        document.getElementById("btnParar").addEventListener("click", click);
+        document.getElementById("btnIniciar").addEventListener("click", inicio);
         var contador = document.getElementById("contador");
         var interval;
         var segundos = 30;
@@ -37,7 +38,11 @@
             }
         }
 
-        interval = setInterval(temporizador, 1000);
+        function inicio(){
+            interval = setInterval(temporizador, 1000);
+
+        }
+
 
     </script>
 </body>
