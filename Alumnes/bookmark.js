@@ -4,23 +4,28 @@ var id = -1;
 
 function main(){
     
-    document.getElementById("nomAdresa").addEventListener("click", crearDireccion);;
-    crearDireccion();
+    document.getElementById("crearAdresa").addEventListener("click", crearDireccion);;
+    cargaDirecciones();
 }
 
 function setId(){
 
+    var id = -1;
+    
     var direcciones = JSON.parse(localStorage.getItem("direcciones"));
 
-    if(direcciones){                          // Si ya hay objetos en la array direcciones, se recuperan del Local Storage
-        console.log("dir");
-        var id = direcciones.length - 1;      // Se continua con el contador del id partiendo del id del último objeto de la array
-        insertarDireccion();
-        return direcciones;
+    if (direcciones){
+        direcciones.forEach(element => {
+            id ++;
+            element.id = id;
+        });    
     }else{
-        return direcciones = new Array();        // Si no hay ninguna array de objetos, se crea
-        var id = -1;                             // Se establece un contador desde 0    
+        direcciones = new Array();
     }
+
+    localStorage.setItem("direcciones", JSON.stringify(direcciones)); // Añadimos la array de dirdcuto en el Local Storage
+
+    return direcciones;
 }
 
 function crearDireccion(){
@@ -40,7 +45,7 @@ function crearDireccion(){
 
     direcciones.push(direccion);
     localStorage.setItem("direcciones", JSON.stringify(direcciones));
-    insertarDireccion();
+    cargaDirecciones();
 }
 
 function borrarDireccion(input){
@@ -59,14 +64,14 @@ function borrarDireccion(input){
     console.table(direcciones);
     localStorage.setItem("direcciones", JSON.stringify(direcciones));
 
-    insertarDireccion();
+    cargaDirecciones();
 }
 
-function insertarDireccion(){
+function cargaDirecciones(){
 
     var lista = document.getElementById("llista");
     lista.replaceChildren();
-    var direcciones = JSON.parse(localStorage.getItem("direcciones"));
+    var direcciones = setId();
 
     if(direcciones){
         var aux = "";
@@ -85,7 +90,6 @@ function insertarDireccion(){
 
             console.log("prueba");
             
-
             var li = document.createElement("li");
             li.setAttribute("id", direccion.id);
             li.appendChild(input);
