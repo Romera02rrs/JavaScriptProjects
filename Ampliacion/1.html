@@ -17,6 +17,7 @@
         document.getElementById("btnIniciar").addEventListener("click", inicio);
         var contador = document.getElementById("contador");
         var interval;
+        var intervaloIniciado = true;
         var segundos = 30;
 
         function click(){
@@ -39,10 +40,11 @@
         }
 
         function inicio(){
-            interval = setInterval(temporizador, 1000);
-
+            if (intervaloIniciado){
+                interval = setInterval(temporizador, 1000);
+                intervaloIniciado = false;
+            }
         }
-
 
     </script>
 </body>
