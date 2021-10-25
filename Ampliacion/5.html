@@ -7,13 +7,13 @@
 <body>
     <h1>Ejercicio 5</h1>
     <h2>Lista de coches:</h2>
-    <ul id="listaCoches">
-
-    </ul>
+    <ul id="listaCoches"></ul>
+    <button id="btnOrdenar">Ordenar</button>
 
     <script>
         window.onload = main;
 
+        document.getElementById("btnOrdenar").addEventListener("click", ordenar);
         var listaCochesEl = document.getElementById("listaCoches");
         var coches = ["Jeep", "Renault", "Porsche", "BMW", "CUPRA", "Dacia", "Ferrari", "Alfa Romeo", "Fiat", "Honda", "Jaguar", "Audi", "Bentley", "Mercedes", "Aston Martin"];
 
@@ -28,7 +28,21 @@
                 var liCoche = document.createElement("li");
                 liCoche.appendChild(document.createTextNode(coche));
                 listaCochesEl.appendChild(liCoche);
+                
             });
+        }
+
+        function ordenar(){
+
+            coches = coches.sort();
+            console.log(coches);
+            
+            
+            
+            while (listaCochesEl.firstChild){
+                listaCochesEl.removeChild(listaCochesEl.firstChild);
+            }
+            insertarCoches();
         }
         
     </script>
