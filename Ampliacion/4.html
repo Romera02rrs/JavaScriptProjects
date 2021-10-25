@@ -40,21 +40,16 @@
     
         function buscar(){
 
-            function encontrarPalabra(frase, palabra) {
-                if (frase.constructor != String || palabra.constructor != String) {
-                    throw TypeError('Ambos argumentos deben ser cadenas de caracteres (String).');
-                }
+            var palabra = document.getElementById("input").value;
 
-                let palabras = frase.split(' ').map(p => p.toLowerCase());
+            let palabras = texto[0].split(' ').map(p => p.toLowerCase());
+            
+            const found = palabras.find(element => element == palabra);
 
-                return palabras.indexOf(palabra.toLocaleLowerCase()) != -1;
+            if(found){
+                console.log();
             }
-
-            try {
-                console.log(encontrarPalabra(texto[0], 'orci')); // true
-            } catch (e) {
-                console.log(`Error: ${e.message}`);
-            }
+            console.log(found);
         }
 
     </script> 
