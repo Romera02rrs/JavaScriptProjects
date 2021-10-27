@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <script type="text/javascript" src="ValidacionHTML5iJS.js"></script>
+    <style>
+        .error {
+            border: solid red 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="procesar.php" method="post" id="elFormulari">
+        <table>
+            <tr>
+                <td> Nom: </td>
+                <td>
+                    <input type="text" name="nom" id="nom" maxlength="15"
+                    pattern="[A-Za-z]{2,15}" title="Introdueix entre 2 i 15 lletres" required/>
+                </td>
+            </tr>
+            <tr>
+                <td> data neixement: </td> 
+                <td>
+                    <input type="date" name="neix" id="neix" step="1"
+                    min="1900-01-01" max="2021-12-31" required/>
+                </td>
+            </tr>
+            <tr>
+                <td> telefon: </td>
+                <td>
+                    <input type="text" name="tel" id="tel" pattern="^\d{3}\s\d{3}\s\d{3}$"
+                    title="El telefono ha de ser amb el següent format 999 999 999" required/>
+                </td> 
+            </tr>    
+            <tr>
+                <td>&nbsp;</td> 
+                <td>
+                    <input type="reset" name="limpiar" id="limpiar" value="Reset"/>
+                    <input type="submit" name="enviar" id="enviar" value="Enviar"/> 
+                </td> 
+            </tr> 
+        </table> 
+        <p id="missatgeError"></p>
+    </form>
+</body>
+
+</html>
