@@ -8,7 +8,7 @@ function main(){
     cargaComunidades();
 }
 
-function cargaComunidades(){
+function cargaComunidades(){ 
 
     const xhttp = new XMLHttpRequest();
 
