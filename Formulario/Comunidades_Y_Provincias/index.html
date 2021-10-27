@@ -7,13 +7,23 @@
 </head>
 <body style="margin: 3%; font-family:'JetBrains Mono', 'monospace', 'Arial';">
     <h1>Comunidades y Provincias</h1>
+
     <form action="logic.php" method="post" id="formulario">
         <div>
             <label for="comunidadesId">Selecciona su comunidad</label><br>
             <select name="comunidades" id="comunidadesId">
             </select><br>
+        </div>
+        <div>
+            <label for="provinciasId">Selecciona su Provincia</label><br>
+            <select name="provincias" id="provinciasId">
+                <option disabled selected>Seleccione una provincia</option>
+            </select><br>
+        </div>
+        </div>
             <input type="submit" value="Enviar" id="enviar">
         </div>
     </form>
+    
 </body>
 </html>

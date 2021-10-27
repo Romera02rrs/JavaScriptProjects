@@ -1,8 +1,10 @@
 window.onload = main;
+var datos;
 
 function main(){
 
-    document.getElementById("enviar").addEventListener("click", procesarFormulario);;
+    //document.getElementById("enviar").addEventListener("click", procesarFormulario);
+    document.getElementById("comunidadesId").addEventListener("input", cargaProvincias);
     cargaComunidades();
 }
 
@@ -18,18 +20,19 @@ function cargaComunidades(){
 
         if(this.readyState == 4 && this.status == 200){
 
-            let datos = JSON.parse(this.responseText);
+            datos = JSON.parse(this.responseText);
+            //console.log(datos);
 
             /*----------------------------------------------------------------------------------------------------------------*/
 
-            var selectForm = document.getElementById("comunidadesId");
+            var selectFormComun = document.getElementById("comunidadesId");
             var aux = "<option disabled selected>Selecciona una comunidad</option>";
 
             for(let item of datos){
                 
                 aux += "<option value='"+item.comunitat+"'>"+item.comunitat+"</option>";
             }
-            selectForm.innerHTML = aux;
+            selectFormComun.innerHTML = aux;
             
             /*----------------------------------------------------------------------------------------------------------------*/
 
@@ -37,6 +40,18 @@ function cargaComunidades(){
     }
 }
 
-function procesarFormulario(){
+function cargaProvincias(){
 
+    var provincia = document.getElementById("comunidadesId").value;
+    var selectFormProv = document.getElementById("provinciasId");
+    var aux = "<option disabled selected>Seleccione una provincia</option>";
+
+    for(let item of datos){
+        if (item.comunitat == provincia){
+            for(let prov of item.provincies){
+                aux += "<option value='"+prov+"'>"+prov+"</option>";
+            }
+        }
+    }
+    selectFormProv.innerHTML = aux;
 }
