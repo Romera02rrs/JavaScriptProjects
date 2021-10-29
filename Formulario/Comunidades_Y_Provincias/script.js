@@ -29,10 +29,11 @@ function cargaComunidades(){
             var aux = "<option disabled selected>Selecciona una comunidad</option>";
 
             for(let item of datos){
-                
-                aux += "<option value='"+item.comunitat+"'>"+item.comunitat+"</option>";
+                var option = document.createElement("option");
+                option.appendChild(document.createTextNode(item.comunitat));
+                option.setAttribute("value", item.comunitat);
+                selectFormComun.appendChild(option);
             }
-            selectFormComun.innerHTML = aux;
             
             /*----------------------------------------------------------------------------------------------------------------*/
 
@@ -43,15 +44,27 @@ function cargaComunidades(){
 function cargaProvincias(){
 
     var provincia = document.getElementById("comunidadesId").value;
-    var selectFormProv = document.getElementById("provinciasId");
-    var aux = "<option disabled selected>Seleccione una provincia</option>";
+    var provinciasDiv = document.getElementById("provinciasDiv");
+    var selectFormProv = document.createElement("select");
+
+    var optionSelected = document.createElement("option");
+    optionSelected.appendChild(document.createTextNode("Seleccione una provincia"));
+    optionSelected.setAttribute("selected", true);
+    optionSelected.setAttribute("disabled", true);
+    selectFormProv.appendChild(optionSelected);
 
     for(let item of datos){
         if (item.comunitat == provincia){
             for(let prov of item.provincies){
-                aux += "<option value='"+prov+"'>"+prov+"</option>";
+                
+                var option = document.createElement("option");
+                option.appendChild(document.createTextNode(prov));
+                option.setAttribute("value", prov);
+                selectFormProv.appendChild(option);
             }
         }
     }
-    selectFormProv.innerHTML = aux;
+    
+    provinciasDiv.appendChild(selectFormProv);
+    provinciasDiv.replaceChildren(selectFormProv, selectFormProv);
 }

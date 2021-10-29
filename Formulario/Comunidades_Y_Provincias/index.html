@@ -9,12 +9,13 @@
     <h1>Comunidades y Provincias</h1>
 
     <form action="logic.php" method="post" id="formulario">
-        <div>
+        <div id="comunidadesDiv">
             <label for="comunidadesId">Selecciona su comunidad</label><br>
             <select name="comunidades" id="comunidadesId">
+                <option selected disabled>Selecciona una comunidad</option>
             </select><br>
         </div>
-        <div>
+        <div id="provinciasDiv">
             <label for="provinciasId">Selecciona su Provincia</label><br>
             <select name="provincias" id="provinciasId">
                 <option disabled selected>Seleccione una provincia</option>
