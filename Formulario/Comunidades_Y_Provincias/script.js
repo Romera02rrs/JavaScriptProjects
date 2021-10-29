@@ -45,7 +45,17 @@ function cargaProvincias(){
 
     var provincia = document.getElementById("comunidadesId").value;
     var provinciasDiv = document.getElementById("provinciasDiv");
+
+    document.getElementById("provinciasDiv").removeChild(document.getElementById("provinciasId"));
+    document.getElementById("provinciasDiv").removeChild(document.getElementById("provinciasDiv").firstChild);
+
+    var labelFormProv = document.createElement("label");
+    labelFormProv.appendChild(document.createTextNode("Selecciona su provincia"));
+    labelFormProv.setAttribute("for", "provinciasID");
+
     var selectFormProv = document.createElement("select");
+    selectFormProv.setAttribute("id", "provinciasId");
+    selectFormProv.setAttribute("name", "provincias");
 
     var optionSelected = document.createElement("option");
     optionSelected.appendChild(document.createTextNode("Seleccione una provincia"));
@@ -65,6 +75,11 @@ function cargaProvincias(){
         }
     }
     
+    provinciasDiv.appendChild(labelFormProv);
     provinciasDiv.appendChild(selectFormProv);
-    provinciasDiv.replaceChildren(selectFormProv, selectFormProv);
+
+    console.clear();
+    console.log(provinciasDiv);
+
+    provinciasDiv.appendChild(selectFormProv);
 }
