@@ -8,7 +8,7 @@ function iniciar(){
 function validar(e) {
 
     esborrarError();
-    if(validarDNI() && validarTel() && validarFecha() && confirm("confirmar")){
+    if(validarDNI() && validarTel() && validarFecha() && validarMatricula() && confirm("confirmar")){
         return false;
     }else{
         e.preventDefault();
@@ -27,55 +27,72 @@ function esborrarError (){
 
 function validarDNI (){
 
-    var exp = new RegExp(/^[0-9]{8}[A-Za-z]{1}$);
+    debugger;
+    var regExpDNI = new RegExp(/^\d{8}[A-Z]{1}$/);
     var element= document.getElementById("DNI");
     if(!element.checkValidity()){
-        if(element.validity.valueMissing){
+        if(!element.valueMissing){
             error2(element,"Introduce un DNI");
+            return false;
         }
-        if(element.validity.patternMismatch){
+        if(!regExpDNI.test(element.value)){
             error2(element, "Formato del DNI 9999999A");
+            return false;
         }
-        //error
-        return true;
     }
     return true;
 }
 
 function validarTel (){
     
+    var regExpTel = new RegExp(/^\d{3}\s\d{3}\s\d{3}$/);
     var element = document.getElementById("telefono");
     if(!element.checkValidity()){
         if(element.validity.valueMissing){
-            error2(element, "Introduce una teléfono");
+            error2(element, "Introduce un teléfono");
+            return false;
         }
-        if(element.validity.patternMismatch){
+        if(!regExpTel.test(element.value)){
             error2(element, "Formato del teléfono 999 999 999");
+            return false;
         }
-        //error
-        return true;
     }
     return true;
 }
 
 function validarFecha (){
-    
+
+    var regExpFecha = new RegExp(/^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$/);
     var element = document.getElementById("fecha");
     if(!element.checkValidity()){
         if(element.validity.valueMissing){
-            error2(element, "introduce una fecha");
+            error2(element, "Introduce una fecha");
+            return false;
         }
-        if(element.validity.rangeOverflow){
-            error2(element, "data minima ...");
+        if(!regExpFecha.test(element.value)){
+            error2(element, "Fecha no válida");
+            return false;
         }
-        if(element.validity.rangeUnderflow){
-            error2(element, "La data maxima...");
-        }
-        //error
-        return false;
     }
     return true;
 }
+
+// function validarMatricula (){
+
+//     var regExpMatricula = new RegExp(/^[0-9]{1,4}(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}$/);
+//     var element= document.getElementById("matricula");
+//     if(!element.checkValidity()){
+//         if(element.validity.valueMissing){
+//             error2(element,"Introduce una matrícula");
+//             return false;
+//         }
+//         if(!regExpMatricula.test(element.value)){
+//             error2(element, "Formato de la maytícula 9999 AAA (CH|LL)");
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 
 function error2(element, missatge){
     document.getElementById("missatgeError").innerHTML = missatge;
