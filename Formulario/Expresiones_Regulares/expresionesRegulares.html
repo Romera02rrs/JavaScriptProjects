@@ -12,41 +12,41 @@
             <legend>Datos Perosnales</legend><br>
             <div>
                 <label for="DNI">DNI</label><br>
-                <input type="text" id="DNI" name="DNI" placeholder="Introduzca su DNI:" required>
+                <input type="text" id="DNI" name="DNI" placeholder="99999999A" required>
             </div><br>
             <div>
                 <label for="telefono">Teléfono</label><br>
-                <input type="tel" id="telefono" name="telefono" placeholder="Introduzca un número:" required>
+                <input type="tel" id="telefono" name="telefono" placeholder="999 999 999" required>
             </div><br>
             <div>
                 <label for="fecha">Fecha</label><br>
-                <input type="text" id="fecha" name="fecha" required pattern="[0-9]{4}\/[0-12]{2}\/[0-31]{2}" min="">
+                <input type="text" id="fecha" name="fecha" placeholder="YYYY/mm/dd" required>
             </div><br>
         </fieldset><br>
         <fieldset>
             <legend>Datos del vehículo</legend><br>
             <div>
                 <label for="matricula">Matrícula</label><br>
-                <input type="text" id="matricula" name="matricula" placeholder="Introduzca la matrícula:" required>
+                <input type="text" id="matricula" name="matricula" placeholder="9999 AAA    !(CH|LL)" required>
             </div><br>
         </fieldset><br>
         <fieldset>
             <legend>Datos digitales</legend><br>
             <div>
                 <label>Correo Electrónico</label><br>
-                <input type="email" id="correo" name="correo" placeholder="Introduzca su correo:" required>    
+                <input type="email" id="correo" name="correo" placeholder="correo@info.com" required>    
             </div><br>
             <div>
                 <label for="url">URL</label><br>
-                <input type="url" id="url" name="url" placeholder="Introduzca la URL:" required>
+                <input type="url" id="url" name="url" placeholder="https://url.com" required>
             </div>
         </fieldset><br>
         <div>
-            <input type="submit" name="enviar" id="enviar" value="Enviar">
+            <input type="submit" name="enviar" id="enviar" value="enviar">
         </div>
     </form>
     <div>
-        <h2 id="missatgeError"></h2>
+        <h2 id="errorMensaje"></h2>
     </div>
 </body>
 </html>
