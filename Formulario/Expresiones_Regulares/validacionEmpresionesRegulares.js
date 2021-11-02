@@ -8,8 +8,8 @@ function iniciar(){
 function validar(e) {
 
     esborrarError();
-    if(validarNom() && validarNeix() && validarTel() && confirm("confirmar")){
-        return true;
+    if(validarDNI() && validarTel() && validarFecha() && confirm("confirmar")){
+        return false;
     }else{
         e.preventDefault();
         return false;
@@ -25,25 +25,42 @@ function esborrarError (){
     }
 }
 
-function validarNom (){
+function validarDNI (){
 
-    var element= document.getElementById("nom");
+    var exp = new RegExp(/^[0-9]{8}[A-Za-z]{1}$);
+    var element= document.getElementById("DNI");
     if(!element.checkValidity()){
         if(element.validity.valueMissing){
-            error2(element,"INtroduce un nombre");
+            error2(element,"Introduce un DNI");
         }
         if(element.validity.patternMismatch){
-            error2(element, "El nombe debe tener entr 2 y 14 caracteres");
+            error2(element, "Formato del DNI 9999999A");
         }
         //error
-        return false;
+        return true;
     }
     return true;
 }
 
-function validarNeix (){
+function validarTel (){
     
-    var element = document.getElementById("neix");
+    var element = document.getElementById("telefono");
+    if(!element.checkValidity()){
+        if(element.validity.valueMissing){
+            error2(element, "Introduce una teléfono");
+        }
+        if(element.validity.patternMismatch){
+            error2(element, "Formato del teléfono 999 999 999");
+        }
+        //error
+        return true;
+    }
+    return true;
+}
+
+function validarFecha (){
+    
+    var element = document.getElementById("fecha");
     if(!element.checkValidity()){
         if(element.validity.valueMissing){
             error2(element, "introduce una fecha");
@@ -53,22 +70,6 @@ function validarNeix (){
         }
         if(element.validity.rangeUnderflow){
             error2(element, "La data maxima...");
-        }
-        //error
-        return false;
-    }
-    return true;
-}
-
-function validarTel (){
-    
-    var element = document.getElementById("tel");
-    if(!element.checkValidity()){
-        if(element.validity.valueMissing){
-            error2(element, "introduce una telefon");
-        }
-        if(element.validity.patternMismatch){
-            error2(element, "format 999 999 999");
         }
         //error
         return false;
