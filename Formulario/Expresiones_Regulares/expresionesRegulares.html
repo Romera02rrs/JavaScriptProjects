@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rubén Romera">
+    <title>Expresiones Regulares, Formulario</title>
+</head>
+<body style="margin: 3%; font-family:'JetBrains Mono', 'monospace', 'Arial';">
+    <form method="post" action="procesa.php">
+        <fieldset>
+            <legend>Datos Perosnales</legend><br>
+            <div>
+                <label for="DNI">DNI</label><br>
+                <input type="text" id="DNI" name="DNI" placeholder="Introduzca su DNI:" value="" pattern="{9}">
+            </div><br>
+            <div>
+                <label for="telefono">Teléfono</label><br>
+                <input type="tel" id="telefono" name="telefono" placeholder="Introduzca un número:" value="">
+            </div><br>
+            <div>
+                <label for="fecha">Fecha</label><br>
+                <input type="date" id="fecha" name="fecha" value="">
+            </div><br>
+        </fieldset><br>
+        <fieldset>
+            <legend>Datos del vehículo</legend><br>
+            <div>
+                <label for="matricula">Matrícula</label><br>
+                <input type="text" id="matricula" name="matricula" placeholder="Introsuzca la matrícula" value="">
+            </div><br>
+        </fieldset><br>
+        <fieldset>
+            <legend>Datos digitales</legend><br>
+            <div>
+                <label>Correo Electrónico</label><br>
+                <input type="email" id="correo" name="correo" placeholder="Introduzca su correo:" value="">    
+            </div><br>
+            <div>
+                <label for="url">URL</label><br>
+                <input type="url" id="url" name="url" placeholder="Introduzca la URL:" value="">
+            </div>
+        </fieldset><br>
+        <div>
+            <input type="submit" name="enviar" id="enviar" value="Enviar">
+        </div>
+    </form>
+    
+</body>
+</html>
