@@ -1,5 +1,3 @@
-var test= 10010;
-debugger;
 window.onload = iniciar;
 
 function iniciar(){
@@ -9,7 +7,6 @@ function iniciar(){
 }
 
 function validarNom (){
-    var prueba = 67;
     var element= document.getElementById("nom");
     if(!element.checkValidity()){
         if(element.validity.valueMissing){

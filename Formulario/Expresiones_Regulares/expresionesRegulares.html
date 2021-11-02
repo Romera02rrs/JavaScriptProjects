@@ -12,22 +12,22 @@
             <legend>Datos Perosnales</legend><br>
             <div>
                 <label for="DNI">DNI</label><br>
-                <input type="text" id="DNI" name="DNI" placeholder="Introduzca su DNI:" value="" pattern="{9}">
+                <input type="text" id="DNI" name="DNI" placeholder="Introduzca su DNI:" pattern="[0-9]{8}[A-Za-z]{1}">
             </div><br>
             <div>
                 <label for="telefono">Teléfono</label><br>
-                <input type="tel" id="telefono" name="telefono" placeholder="Introduzca un número:" value="">
+                <input type="tel" id="telefono" name="telefono" placeholder="Introduzca un número:" pattern="[0-9]{3}\s[0-9]{3}\s[0-9]{3}">
             </div><br>
             <div>
                 <label for="fecha">Fecha</label><br>
-                <input type="date" id="fecha" name="fecha" value="">
+                <input type="date" id="fecha" name="fecha">
             </div><br>
         </fieldset><br>
         <fieldset>
             <legend>Datos del vehículo</legend><br>
             <div>
                 <label for="matricula">Matrícula</label><br>
-                <input type="text" id="matricula" name="matricula" placeholder="Introsuzca la matrícula" value="">
+                <input type="text" id="matricula" name="matricula" placeholder="Introduzca la matrícula:" pattern="[0-9]{1,4}\s?(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}">
             </div><br>
         </fieldset><br>
         <fieldset>
@@ -38,7 +38,7 @@
             </div><br>
             <div>
                 <label for="url">URL</label><br>
-                <input type="url" id="url" name="url" placeholder="Introduzca la URL:" value="">
+                <input type="url" id="url" name="url" placeholder="Introduzca la URL:" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
             </div>
         </fieldset><br>
         <div>
