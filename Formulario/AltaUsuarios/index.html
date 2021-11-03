@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rubén Romera">
+    <script src="scripts.js"></script>
+    <title>Alta de Usuarios</title>
+</head>
+<body>
+    <h1>Alta de usuarios</h1>
+    <form method="post" action="#.php">
+        <div>
+            <label for="nombre">Nombre</label><br>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Rubén" required pattern="[A-Za-z]{2,20}">
+        </div><br>
+        <div>
+            <label for="apellidos">Apellidos</label><br>
+            <input type="text" id="fapellidos" name="apellidos" placeholder="Ej:  Romera Sánchez" required>
+        </div><br>
+        <div>
+            <label for="DNI">NIF / NIE</label><br>
+            <input type="text" id="DNI" name="DNI" placeholder="Ej: 12345678A" required>
+        </div><br>
+        <div>
+            <label for="correo">Correo electrónico</label><br>
+            <input type="email" id="email" name="email" placeholder="Ej: correo@correo.com" required>
+        </div><br>
+        <div>
+            <label for="reEmail">Repetir correo electrónico</label><br>
+            <input type="email" id="reEmail" name="reEmail" placeholder="Ej: correo@correo.com" required>
+        </div><br>
+        <div>
+            <label for="username">Nombre de usuarario</label><br>
+            <input type="text" id="username" name="username" placeholder="Ej: Username02" required>
+        </div><br>
+        <div>
+            <label for="clave">Contraseña</label><br>
+            <input type="password" id="clave" name="clave" placeholder="Ej: $PaSwOrD$2002" required>
+        </div><br>
+        <div>
+            <label for="reClave">Repetir contraseña</label><br>
+            <input type="password" id="reClave" name="reClave" placeholder="Ej: $PaSwOrD$2002" required>
+        </div><br>
+        <div>
+            <label for="verifica">Verifica que eres humano</label><br>
+            <input type="text" id="verifica" name="verifica" placeholder="" required>
+        </div><br>
+        <div>
+            <input type="submit" id="enviar" name="enviar" value="Enviar"> 
+        </div>
+    </form>
+</body>
+</html>
