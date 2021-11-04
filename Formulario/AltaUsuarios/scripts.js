@@ -51,11 +51,11 @@ function valida(elemento, re){
             return true;
         }else{
             if(elemento.validity.valueMissing){
-                error(elemento, "vacio");
+                error(elemento, "El campo " + elemento.name + " es obligatorio");
                 return false;
             }else{
                 if(elemento.validity.patternMismatch){
-                    error(elemento, "No cumple el pattern")
+                    error(elemento, elemento.getAttribute("title"));
                 }
             }
         }
@@ -63,7 +63,7 @@ function valida(elemento, re){
         if(elemento.value == re.value){
             return true;
         }else{
-            error(elemento, "No coincide");
+            error(elemento, elemento.getAttribute("title"));
             return false;
         }
     }
@@ -82,7 +82,7 @@ function validaHumano(verifica){
     if(num1 + num2 == verifica.value){
         return true;
     }else{
-        error(verifica, "La suma está mal");
+        error(verifica, verifica.getAttribute("title"));
         return false;
     }
 }
