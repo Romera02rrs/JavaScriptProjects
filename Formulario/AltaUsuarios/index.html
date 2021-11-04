@@ -17,15 +17,15 @@
         </div><br>
         <div>
             <label for="apellidos">Apellidos</label><br>
-            <input type="text" id="fapellidos" name="apellidos" placeholder="Ej:  Romera Sánchez" required pattern="^[A-Za-zÀ-ÿ]{2,30}$">
+            <input type="text" id="apellidos" name="apellidos" placeholder="Ej:  Romera Sánchez" required pattern="^[A-Za-zÀ-ÿ]{2,30}$">
         </div><br>
         <div>
-            <label for="DNI">NIF / NIE</label><br>
-            <input type="text" id="DNI" name="DNI" placeholder="Ej: 12345678A" required>
+            <label for="dni">NIF / NIE</label><br>
+            <input type="text" id="dni" name="dni" placeholder="Ej: 12345678A" required pattern="^[0-9]{8}[A-Za-z]{1}$">
         </div><br>
         <div>
             <label for="correo">Correo electrónico</label><br>
-            <input type="email" id="email" name="email" placeholder="Ej: correo@correo.com" required>
+            <input type="email" id="email" name="email" placeholder="Ej: correo@correo.com" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
         </div><br>
         <div>
             <label for="reEmail">Repetir correo electrónico</label><br>
@@ -33,11 +33,12 @@
         </div><br>
         <div>
             <label for="username">Nombre de usuarario</label><br>
-            <input type="text" id="username" name="username" placeholder="Ej: Username02" required>
+            <input type="text" id="username" name="username" placeholder="Ej: Username02" required pattern="^[0-9A-Za-zÀ-ÿ]{2,8}$">
         </div><br>
         <div>
             <label for="clave">Contraseña</label><br>
-            <input type="password" id="clave" name="clave" placeholder="Ej: $PaSwOrD$2002" required>
+            <input type="password" id="clave" name="clave" placeholder="Ej: $PaSwOrD$2002" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            ">
         </div><br>
         <div>
             <label for="reClave">Repetir contraseña</label><br>

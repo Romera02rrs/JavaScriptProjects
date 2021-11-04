@@ -1,12 +1,32 @@
 window.onload = main;
+var num1;
+var num2;
 
 function main(){
-    document.getElementById("enviar").addEventListener("click", validarFormulario, false);
+    document.getElementById("enviar").addEventListener("click", enviarForm, false);
+    var inputs = document.getElementsByTagName("input");
+    for (input of inputs){
+        input.addEventListener("blur", validarFormulario, false);
+        if(input.id == "verifica"){
+            generaPrueba(input);
+            input.innerHTML = "";
+        }
+    }
 }
 
-function validarFormulario(e){
+function enviarForm(e){
+
+    if(validarFormulario() && confirm("Enviar Formulario?")){
+        return true;
+    }
+    e.preventDefault();
+}
+
+function validarFormulario(){
+    borraErrores();
+    var nombre = document.getElementById("nombre");
     var apellidos = document.getElementById("apellidos");
-    var DNI = document.getElementById("DNI");
+    var dni = document.getElementById("dni");
     var email = document.getElementById("email");
     var reEmail = document.getElementById("reEmail");
     var username = document.getElementById("username");
@@ -14,27 +34,56 @@ function validarFormulario(e){
     var reClave = document.getElementById("reClave");
     var verifica = document.getElementById("verifica");
 
-
-    if(validaNombre()){
+    if(valida(nombre) && valida(apellidos) && valida(dni) && valida(email) && 
+       valida(reEmail, email) && valida(username) && valida(clave) && valida(reClave, clave) && validaHumano(verifica)){
         console.log("Valido");
-        e.preventDefault();
+        return true;
     }else{
         console.log("No valido");
-        e.preventDefault();
+        return false;
     }
 }
 
-function validaNombre(){
-    var nombre = document.getElementById("nombre");
-    if(nombre.checkValidity()){
-        borraError(nombre);
-        return true;
+function valida(elemento, re){
+    borraErrores();
+    if(!re){
+        if(elemento.checkValidity()){
+            return true;
+        }else{
+            if(elemento.validity.valueMissing){
+                error(elemento, "vacio");
+                return false;
+            }else{
+                if(elemento.validity.patternMismatch){
+                    error(elemento, "No cumple el pattern")
+                }
+            }
+        }
     }else{
-        if(nombre.validity.valueMissing){
-            console.log("vacio");
-            error(nombre, "vacio");
+        if(elemento.value == re.value){
+            return true;
+        }else{
+            error(elemento, "No coincide");
             return false;
         }
+    }
+}
+
+function generaPrueba(verifica){
+
+    num1 = Math.floor(Math.random() * 11);
+    num2 = Math.floor(Math.random() * 11);
+    var mensaje = num1 + " + " + num2 + " = ?"
+    verifica.setAttribute("placeholder", mensaje)
+}
+
+function validaHumano(verifica){
+
+    if(num1 + num2 == verifica.value){
+        return true;
+    }else{
+        error(verifica, "La suma está mal");
+        return false;
     }
 }
 
@@ -46,18 +95,17 @@ function error(elemento, error){
     pErr.appendChild(mensajeErr);
 
     var padre = elemento.parentNode;
+  
     padre.appendChild(pErr);
-
-    var ultimoEle = padre.lastChild;
-    console.log(ultimoEle);
-    //ultimoEle.replaceWith(pErr);
-    padre.replaceChild(pErr, ultimoEle)
+    
+    elemento.focus();
 }
 
-function borraError(elemento){
-    var errorEle = elemento.querySelector(".error");
-    console.log(errorEle);
-    if(errorEle){
-        errorEle.parentNode.removeChild(errorEle);
+function borraErrores(){
+
+    var listaerrores = document.getElementsByClassName("error");
+    for(elemento of listaerrores){
+        console.log(elemento);
+        elemento.parentNode.removeChild(elemento);
     }
 }
