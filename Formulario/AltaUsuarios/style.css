@@ -34,7 +34,7 @@ input {
   border-radius: 5px;
   margin-bottom: 16px;
   border: 2px solid #0a1b31;
-  font-family: 'calibri';
+  font-family: 'JetBrains Mono', 'calibri', 'Arial';
   font-size: 18px;
   color: white;
 }

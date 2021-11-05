@@ -6,7 +6,8 @@ function main(){
     document.getElementById("enviar").addEventListener("click", enviarForm, false);
     var inputs = document.getElementsByTagName("input");
     for (input of inputs){
-        input.addEventListener("blur", validarFormulario, false);
+        
+        input.addEventListener("blur", ()=>{valida(input.id)}, false);
         if(input.id == "verifica"){
             generaPrueba(input);
             input.innerHTML = "";
@@ -44,8 +45,9 @@ function validarFormulario(){
     }
 }
 
-function valida(elemento, re){
+function valida(id, re){
     borraErrores();
+    var elemento = document.getElementById(id)
     if(!re){
         if(elemento.checkValidity()){
             return true;
