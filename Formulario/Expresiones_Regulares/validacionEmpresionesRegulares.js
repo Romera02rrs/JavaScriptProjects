@@ -16,7 +16,7 @@ function validarDNI() {
 }
 
 function validarTel() {
-    var expReg = new RegExp(/^\d{3}\s?\d{3}\s?\d{3}$$/);
+    var expReg = new RegExp(/^\d{3}\s?\d{3}\s?\d{3}$/);
     var element = document.getElementById("telefono");
     if (expReg.test(element.value)) {
         return true;
