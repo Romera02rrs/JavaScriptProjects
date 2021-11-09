@@ -3,10 +3,43 @@ var numero = 0;
 
 function main(){
 
+    document.getElementById("enviar").addEventListener("click", enviarForm, false);
     document.getElementById("tipo").addEventListener("change", cambiaImg);
     document.getElementById("serie").addEventListener("blur", validaSerie);
     document.getElementById("mostrarDescripcio").addEventListener("click", clickDescripcio);
     document.getElementById("descripcio").addEventListener("keypress", ()=>cuenta(this.event));
+}
+
+function error(){
+    
+    divError = document.getElementById("capaError");
+
+    pError = document.createElement("p");
+    texto = document.createTextNode("Error en la validación");
+
+    pError.appendChild(texto);
+    divError.appendChild(pError);
+    divError.replaceChildren(pError, pError);
+
+}
+
+function borrarError(){
+
+    divError = document.getElementById("capaError");
+    pError = document.createElement("p");
+
+    divError.appendChild(pError);
+    divError.replaceChildren(pError, pError);
+}
+
+function enviarForm(e){
+
+    if(validaSerie()){
+        return true;
+    }else{
+        e.preventDefault();
+        return false;
+    }
 }
 
 function cambiaImg(tipo){
@@ -31,12 +64,17 @@ function validaSerie(){
 
     var expReg = new RegExp(/^\d{3}[A-Z]{4}([1-2]|[A])$/);
     var element = document.getElementById("serie");
-    if (expReg.test(element.value)) {
-        console.log("true");
-        return true;
-    } else {
-        console.log("false")
+    if(element.value == null){
+        error();
         return false;
+    }else{
+        if (expReg.test(element.value)) {
+            borrarError();
+            return true;
+        } else {
+            error();
+            return false;
+        }    
     }
 }
 
@@ -47,11 +85,13 @@ function clickDescripcio(){
 }
 
 function cuenta(event){
-    if(event.key == ' '){
-        numero++;
-    }
-    lbl = document.getElementById("descripcioLbl");
-    lbl.innerHTML = "Descripció, palabras = " + numero;
+    
+    // OPCIÓN 1
+    // if(event.key == ' '){
+    //     numero++;
+    // }
+    // lbl = document.getElementById("descripcioLbl");
+    // lbl.innerHTML = "Descripció, palabras = " + numero;
 
 
     // OPCIÓN 2
@@ -59,14 +99,4 @@ function cuenta(event){
     var palabras = txtArea.split(" ");
     var numeroPalabras = palabras.length;
     lbl.innerHTML = "Descripció, palabras = " + numeroPalabras;
-
 }
-// la imatge de la esquerra ha de canviar quna canvia el desplegable. 
-
-//s'hha de validar el número de serie per a que el numero cumplisca 
-// les seguent regles : 3 numeros inicials, 4 lletres en majúscules
-// i acabar amb el níumero 1 o 2 , o amb la lletra A
-
-//  Al clickar en mostrar Descripció apareixà el text area per poder excriure les dades.
-// cada vegada que s'escriga una paraula al text area s'ha de contar el númerode paraules.
- 
