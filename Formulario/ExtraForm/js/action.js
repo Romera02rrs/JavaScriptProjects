@@ -85,12 +85,13 @@ function clickDescripcio(){
 }
 
 function cuenta(event){
-    
+
+    lbl = document.getElementById("descripcioLbl");
+
     // OPCIÓN 1
     // if(event.key == ' '){
     //     numero++;
     // }
-    // lbl = document.getElementById("descripcioLbl");
     // lbl.innerHTML = "Descripció, palabras = " + numero;
 
 
