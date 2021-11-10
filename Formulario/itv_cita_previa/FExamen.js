@@ -42,5 +42,45 @@ function cambioProvincia(provincia){
 
 function validaFormulario(e){
 
+    if(validaComnustible() && validaFecha()){
+        
+    }else{
+        e.preventDefault();
+    }
+}
+
+function validaHora(){
+
     
+}
+
+function validaFecha(){
+
+    fechaAdelantada = new Date();
+    fechaAdelantada.setDate(fechaAdelantada.getDate() + 30);
+    console.log(fechaAdelantada);
+    
+    fecha = document.getElementById("fecha");
+    fechaSeleccionada = new Date(fecha.value);
+    console.log(fechaSeleccionada);
+
+    fechaActual = new Date();
+
+    if(fechaSeleccionada > fechaAdelantada || fechaActual > fechaSeleccionada){
+        console.log("hemos perdido perro");
+       return false;
+    }else{
+        console.log("hemos ganado perro");
+        return true;
+    }
+}
+
+function validaComnustible(){
+
+    select = document.getElementById("conbustible");
+    if(select.value == "null"){;
+        return false;
+    }else{
+        return true;
+    }
 }

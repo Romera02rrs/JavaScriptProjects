@@ -37,7 +37,7 @@
                 </br><label class="formInfo"> La matrícula no puede contener espacios ni símbolos. Ejemplos: A1234BB, 1234BBB, B1234BBB</label>
                     </br><label>Tipus Combustible</label>
                     </br><select id="conbustible">
-                        <option disabled selected>Selecciona una opció</option>
+                        <option disabled selected value="null">Selecciona una opció</option>
                         <option value="Gasolina">Gasolina</option>    
                         <option value="Dièsel">Dièsel</option>    
                         <option value="Hibrid">Hibrid</option>    
@@ -49,9 +49,9 @@
                     <legend>Data de la cita</legend>
 
                     <label>Data</label></br>
-                    <input type="date">    
+                    <input type="date" id="fecha">    
                     </br><label>hora</label>
-                    </br><select id="conbustible">
+                    </br><select id="hora">
                         <option disabled selected>00:00</option>
                     </select>        
 
