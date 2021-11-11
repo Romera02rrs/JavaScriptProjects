@@ -1,6 +1,9 @@
 window.onload = main;
+var errores = [];
 
 function main(){
+
+    setHora();
 
     document.getElementById("Enviar").addEventListener("click", validaFormulario, false);
 
@@ -16,12 +19,12 @@ function cambioProvincia(provincia){
     do{
         selectEstacio.lastChild.parentNode.removeChild(selectEstacio.lastChild);
     }while(selectEstacio.lastChild != null);
-    //debugger;
 
-    txt = document.createTextNode("Seleccione una estación");
-    opcion = document.createElement("option");
+    var txt = document.createTextNode("Seleccione una estación");
+    var opcion = document.createElement("option");
     opcion.setAttribute("disabled", true);
     opcion.setAttribute("selected", true);
+    opcion.setAttribute("value", null);
 
     opcion.appendChild(txt);
     selectEstacio.appendChild(opcion);
@@ -29,8 +32,8 @@ function cambioProvincia(provincia){
     estacions.forEach(element => {
         if(element.provincia == provincia){
             element.estacio.forEach(estacio => {
-                txt = document.createTextNode(estacio);
-                opcion = document.createElement("option");
+                var txt = document.createTextNode(estacio);
+                var opcion = document.createElement("option");
                 opcion.setAttribute("value", txt);
 
                 opcion.appendChild(txt);
@@ -40,47 +43,221 @@ function cambioProvincia(provincia){
     });
 }
 
+function setHora(){
+
+    // de 7 a 8 cada 15m
+
+    var elemento = document.getElementById("hora");
+    var horas = 6;
+
+    for(let i = 0; i < 14; i++){
+        horas += 1;
+        var minutos = 0;
+        for(let j = 0; j < 4; j++){
+            if(minutos == 0){
+                minutos = "00";
+            }
+
+            txt = document.createTextNode(horas+":"+minutos);
+            opcion = document.createElement("option");
+            minutos = parseInt(minutos);
+            minutos += 15;
+
+            opcion.setAttribute("value", txt);
+            opcion.appendChild(txt);
+            elemento.appendChild(opcion);
+
+            if(horas == 20){
+                return;
+            }
+        }
+    }
+}
+
 function validaFormulario(e){
 
-    if(validaComnustible() && validaFecha()){
+    debugger;
+
+    var valido = false;
+
+    if(!validaEstacio()){
+        var valido = false;
+    }
+    if(!validaMatricula()){
+        var valido = false;
+    }
+    if(!validaComnustible()){
+        var valido = false;
+    }
+    if(!validaFecha()){
+        var valido = false;
+    }
+    if(!validaHora()){
+        var valido = false;
+    }
+    if(!validaNombreApellido()){
+        var valido = false;
+    }
+    if(!validaTelefono()){
+        var valido = false;
+    }
+    if(!validaEmail()){
+        var valido = false;
+    }
+    if(!validaTerminos()){
+        var valido = false;
+    }
+
+    if(valido){
         
     }else{
+        error(errores);
         e.preventDefault();
     }
 }
 
-function validaHora(){
+function validaEstacio(){
 
-    
+    var elemento = document.getElementById("estacio");
+
+    if(elemento.value == "null"){
+        errores += "Debes escoger una estación";
+        return false;
+    }else{
+        return true;
+    }
 }
 
-function validaFecha(){
+function validaMatricula(){
 
-    fechaAdelantada = new Date();
-    fechaAdelantada.setDate(fechaAdelantada.getDate() + 30);
-    console.log(fechaAdelantada);
-    
-    fecha = document.getElementById("fecha");
-    fechaSeleccionada = new Date(fecha.value);
-    console.log(fechaSeleccionada);
+    var elemento = document.getElementById("matricula");
 
-    fechaActual = new Date();
-
-    if(fechaSeleccionada > fechaAdelantada || fechaActual > fechaSeleccionada){
-        console.log("hemos perdido perro");
-       return false;
-    }else{
-        console.log("hemos ganado perro");
+    if(elemento.checkValidity()){
         return true;
+    }else{
+        if(elemento.validity.valueMissing){
+            return false;
+        }else{
+            if(elemento.validity.patternMismatch){
+                return false;
+            }
+        }
     }
 }
 
 function validaComnustible(){
 
-    select = document.getElementById("conbustible");
+    var select = document.getElementById("conbustible");
     if(select.value == "null"){;
         return false;
     }else{
         return true;
     }
+}
+
+function validaFecha(){
+
+    let fechaAdelantada = new Date();
+    fechaAdelantada.setDate(fechaAdelantada.getDate() + 30);
+    
+    let fechaSeleccionada = new Date(document.getElementById("fecha").value);
+
+    let diaSemana = fechaSeleccionada.getDay();
+
+    let fechaActual = new Date();
+
+    if(fechaSeleccionada > fechaAdelantada || fechaActual > fechaSeleccionada || diaSemana == 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function validaHora(){
+
+    var elemento = document.getElementById("hora");
+
+    if(elemento.value == "00:00"){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function validaNombreApellido(){
+
+    var elemento = document.getElementById("nom");
+
+    if(elemento.checkValidity()){
+        return true;
+    }else{
+        if(elemento.validity.valueMissing){
+            return false;
+        }else{
+            if(elemento.validity.patternMismatch){
+                return false;
+            }
+        }
+    }
+
+}
+
+function validaTelefono(){
+
+    var elemento = document.getElementById("telefon");
+
+    if(elemento.checkValidity()){
+        return true;
+    }else{
+        if(elemento.validity.valueMissing){
+            return false;
+        }else{
+            if(elemento.validity.patternMismatch){
+                return false;
+            }
+        }
+    }
+}
+
+function validaEmail(){
+
+    var elemento = document.getElementById("email");
+
+    if(elemento.checkValidity()){
+        return true;
+    }else{
+        if(elemento.validity.valueMissing){
+            return false;
+        }else{
+            if(elemento.validity.patternMismatch){
+                return false;
+            }
+        }
+    }
+}
+
+function validaTerminos(){
+
+    var elemento = document.getElementById("protecioDades");
+
+    if(elemento.checked){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function error(mensajes){
+
+    elemento = document.getElementById("missatgeError");
+
+    for(var i = 0; i < mensajes.lenght; i ++){
+
+        txt = document.createTextNode(mensajes[i]);
+        elemento.appendChild(txt);
+    }
+
+    elemento.appendChild("AAAa");
+    
+    
 }

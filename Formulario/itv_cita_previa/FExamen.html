@@ -26,7 +26,7 @@
                         <input type="radio" id="ctl" value="Castello" name="provincia"><label for="ctl">Castelló</label>  
                         </br><label>Estació ITV</label>
                     </br><select id="estacio">
-                        <option disabled selected>Selecciona una opció</option>
+                        <option disabled selected value="null">Selecciona una opció</option>
                     </select>
 
                 </fieldset>
@@ -59,12 +59,11 @@
                 <fieldset>
                     <legend>Dades personals</legend>
                     <label>Nom i Cognom</label>
-                    </br><input type="text" id="nom" size="30" required>
+                    </br><input type="text" id="nom" size="30" required pattern="^[a-zA-ZÀ-ÿ ]*$">
                     </br><label>telèfon</label>
-                    </br><input type="text" id="telefon" required>
+                    </br><input type="text" id="telefon" required pattern="^[0-9]{3}-?\s?[0-9]{3}-?\s?[0-9]{3}$">
                     </br><label>Email</label>
-                    </br><input type="text" id="email" required>
-                       
+                    </br><input type="text" id="email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
                 </fieldset>
                     <input type="checkbox" id="protecioDades" required><label> he llegit i acepte els Termes i condicions d'aquesta web. </label></br>
                 
@@ -77,9 +76,7 @@
          Curs 2020-21 de DAW al ies Enric Valor de Pego
      </footer>
     
-   <!-- Missatge d'error
    <a href="#miModal">Abrir Modal</a>
-   -->
    
    <div id="miModal" class="modal">
     <div class="modal-contenido">
