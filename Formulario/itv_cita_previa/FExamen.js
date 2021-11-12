@@ -76,10 +76,9 @@ function setHora(){
 
 function validaFormulario(e){
 
-    debugger;
-
     var valido = false;
 
+    //debugger;
     if(!validaEstacio()){
         var valido = false;
     }
@@ -114,6 +113,7 @@ function validaFormulario(e){
         error(errores);
         e.preventDefault();
     }
+    errores = [];
 }
 
 function validaEstacio(){
@@ -121,7 +121,7 @@ function validaEstacio(){
     var elemento = document.getElementById("estacio");
 
     if(elemento.value == "null"){
-        errores += "Debes escoger una estación";
+        errores.push("El campo estación es requerido *");
         return false;
     }else{
         return true;
@@ -136,9 +136,11 @@ function validaMatricula(){
         return true;
     }else{
         if(elemento.validity.valueMissing){
+            errores.push("El campo matrícula es requerido *");
             return false;
         }else{
             if(elemento.validity.patternMismatch){
+                errores.push("Debes introducir una matrícula válida");
                 return false;
             }
         }
@@ -149,6 +151,7 @@ function validaComnustible(){
 
     var select = document.getElementById("conbustible");
     if(select.value == "null"){;
+        errores.push("El campo combustible es requerido *");
         return false;
     }else{
         return true;
@@ -166,7 +169,8 @@ function validaFecha(){
 
     let fechaActual = new Date();
 
-    if(fechaSeleccionada > fechaAdelantada || fechaActual > fechaSeleccionada || diaSemana == 0){
+    if(fechaSeleccionada > fechaAdelantada || fechaActual > fechaSeleccionada || diaSemana == 0 || fechaSeleccionada == "Invalid Date"){
+        errores.push("Debes escogoger una fecha válida (domingos cerrado)");
         return false;
     }else{
         return true;
@@ -178,6 +182,7 @@ function validaHora(){
     var elemento = document.getElementById("hora");
 
     if(elemento.value == "00:00"){
+        errores.push("El campo hora es requerido *");
         return false;
     }else{
         return true;
@@ -192,9 +197,11 @@ function validaNombreApellido(){
         return true;
     }else{
         if(elemento.validity.valueMissing){
+            errores.push("El campo nombre es requerido *");
             return false;
         }else{
             if(elemento.validity.patternMismatch){
+                errores.push("Debes introducir un nombre válido");
                 return false;
             }
         }
@@ -210,9 +217,12 @@ function validaTelefono(){
         return true;
     }else{
         if(elemento.validity.valueMissing){
+            errores.push("El campo número de teléfono es requerido *");
             return false;
         }else{
             if(elemento.validity.patternMismatch){
+            errores.push("Debes introducir un número de teléfono válido");
+
                 return false;
             }
         }
@@ -227,9 +237,11 @@ function validaEmail(){
         return true;
     }else{
         if(elemento.validity.valueMissing){
+            errores.push("El campo eMail es requerido *");
             return false;
         }else{
             if(elemento.validity.patternMismatch){
+            errores.push("Debes introducir un eMail válido");
                 return false;
             }
         }
@@ -243,6 +255,7 @@ function validaTerminos(){
     if(elemento.checked){
         return true;
     }else{
+        errores.push("Debes haceptar los términos y condiciones");
         return false;
     }
 }
@@ -251,13 +264,20 @@ function error(mensajes){
 
     elemento = document.getElementById("missatgeError");
 
-    for(var i = 0; i < mensajes.lenght; i ++){
+    lista = document.createElement("ul");
 
-        txt = document.createTextNode(mensajes[i]);
-        elemento.appendChild(txt);
+    for(var i = 0; i < mensajes.length; i ++){
+
+        lis = document.createElement("li");
+
+        var msj = document.createTextNode(mensajes[i]);
+        
+        lis.appendChild(msj);
+        lista.appendChild(lis);
     }
 
-    elemento.appendChild("AAAa");
+    elemento.appendChild(lista);
+    elemento.replaceChildren(lista, lista);
     
     
 }
