@@ -11,7 +11,10 @@
 </head>
 <body>
  
-<div id="flip"><h1>Exàmen tipus test</h1><h3>Acerts: <span id="acerts">0</span> de <span id="total">0</span> </h3> </div>
+<div id="flip">
+    <h1>Exàmen tipus test</h1>
+    <h3>Acerts: <span id="acerts">0</span> de <span id="total">0</span></h3>
+ </div>
 <div id="panel">
     <h2 id="pregunta"></h2>
     <div id="respostes"></div>
@@ -35,6 +38,10 @@ function inicio(){
 
     function iniciar(){
 
+        aciertos = 0;
+        numPregunta = 0;
+        total = test.length + 1;
+
         actualizaFlip(0, total);
         preguntas();
     }    
@@ -55,11 +62,13 @@ function preguntas(){
                 if(valida(indice, test[i].acert)){
                     aciertos++;
                 }
+                console.log(total);
                 if(total != 1){
-                    $("#panel").hide(1500);
+                    $("#panel").hide();
                     preguntas();
                 }else{
-
+                    nota();
+                    return;
                 }
             });
         });
@@ -67,8 +76,6 @@ function preguntas(){
         numPregunta ++;
         actualizaFlip(aciertos, total);
     }
-
-
 }
 
 function valida(indice, acierto){
@@ -80,6 +87,13 @@ function valida(indice, acierto){
         console.log("false");
         return false;
     }
+}
+
+function nota(){
+
+    console.log(aciertos);
+    var nota = (aciertos / test.length) * 10;
+    $("#panel").html("<div id='nota'><h1> Nota: "+ nota +"</h1></div>");
 }
 
 function actualizaFlip(aciertos, total){
