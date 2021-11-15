@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rubén Romera">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="scripts.js"></script>
+    <title>Alta de Usuarios</title>
+</head>
+<body>
+    <form method="post" action="#.php">
+        <h4>Alta de Usuarios</h4>
+        <div>
+            <label for="nombre">Nombre</label><br>
+            <input type="text" id="nombre" name="nombre" title="De 2 a 20 caracteres" placeholder="Ej: Rubén" required pattern="^[A-Za-zÀ-ÿ]{2,20}$">
+            <!-- <p class="error">Hola</p> -->
+        </div><br>
+        <div>
+            <label for="apellidos">Apellidos</label><br>
+            <input type="text" id="apellidos" name="apellidos" title="De 2 a 30 caracteres" placeholder="Ej:  Romera Sánchez" required pattern="^[A-Za-zÀ-ÿ]{2,30}$">
+        </div><br>
+        <div>
+            <label for="dni">NIF / NIE</label><br>
+            <input type="text" id="dni" name="dni "title="DNI inválido" placeholder="Ej: 12345678A" required pattern="^[0-9]{8}[A-Za-z]{1}$">
+        </div><br>
+        <div>
+            <label for="correo">Correo electrónico</label><br>
+            <input type="email" id="email" name="email" title="Correo electrónico inválido" placeholder="Ej: correo@correo.com" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+        </div><br>
+        <div>
+            <label for="reEmail">Repetir correo electrónico</label><br>
+            <input type="email" id="reEmail" name="reEmail" title="El correo no coincide" placeholder="Ej: correo@correo.com" required>
+        </div><br>
+        <div>
+            <label for="username">Nombre de usuarario</label><br>
+            <input type="text" id="username" name="username" title="De 2 a 8 caracteres" placeholder="Ej: Username02" required pattern="^[0-9A-Za-zÀ-ÿ]{2,8}$">
+        </div><br>
+        <div>
+            <label for="clave">Contraseña</label><br>
+            <input type="password" id="clave" name="clave" title="8 dígitos, mayúscula, minúscula y especial" placeholder="Ej: $PaSwOrD$2002" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            ">
+        </div><br>
+        <div>
+            <label for="reClave">Repetir contraseña</label><br>
+            <input type="password" id="reClave" name="reClave" title="La contraseña no coincide" placeholder="Ej: $PaSwOrD$2002" required>
+        </div><br>
+        <div>
+            <label for="verifica">Verifica que eres humano</label><br>
+            <input type="text" id="verifica" name="verifica" title="Verificación no superada" placeholder="" required>
+        </div><br>
+        <div>
+            <input type="submit" id="enviar" name="enviar" value="Enviar"> 
+        </div>
+    </form>
+</body>
+</html>
