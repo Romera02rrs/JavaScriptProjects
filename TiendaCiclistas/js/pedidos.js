@@ -24,10 +24,10 @@
     imagen : "manguitos.jpg"
     },
     {
-        nombreArticulo : "Calcetines",
-        precioArticulo : 6,
-        tallas : ["XS-S","M-L","XL"],
-        imagen : "calcetines.jpg"
-        }
+    nombreArticulo : "Calcetines",
+    precioArticulo : 6,
+    tallas : ["XS-S","M-L","XL"],
+    imagen : "calcetines.jpg"
+    }
 ];
 
