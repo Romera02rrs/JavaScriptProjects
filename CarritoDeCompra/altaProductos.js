@@ -1,7 +1,7 @@
 window.onload = main;
 
 function main(){
-
+//rfr
     document.getElementById("ok").addEventListener("click", nuevoProducto);
     document.getElementById("borrar").addEventListener("click", borrar);
 
