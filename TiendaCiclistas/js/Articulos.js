@@ -1,7 +1,8 @@
 window.onload = main;
 
 var numPro = 0;
-var tallaSeleccionada;
+var precio = 0;
+var productoSeleccionado = false;
 
 function main(){
 
@@ -16,20 +17,36 @@ function siguienteProducto(e){
 
     }else{
         numPro++;
+        if(productoSeleccionado){
+            precio += pedidos[numPro].precioArticulo;
+        }
         cargaArticulo();
-        console.log(numPro);
         e.preventDefault();
     }   
 }
 
 function sumaTotal(){
 
-    totalEle = document.getElementById("total");
-    tallaInput = document.getElementById("talla").value;
+    debugger;
     
-    totalEle.appendChild(document.createTextNode(pedidos[numPro].precioArticulo));
+    var totalEle = document.getElementById("total");
+    var tallaEle = document.getElementById("talla");
 
-    tallaSeleccionada = tallaInput;
+    do{
+        totalEle.lastChild.parentNode.removeChild(totalEle.lastChild);
+    }while(totalEle.lastChild != null);
+
+    console.log(tallaEle.value);
+
+    if(tallaEle.value == "0"){
+        console.log("AAA");
+        totalEle.appendChild(document.createTextNode((precio) + " €"));
+        productoSeleccionado = false;
+    }else{
+        totalEle.appendChild(document.createTextNode((precio + pedidos[numPro].precioArticulo) + " €"));
+        productoSeleccionado = true;
+    }
+
 }
 
 function cargaArticulo(){
