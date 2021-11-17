@@ -3,6 +3,7 @@ window.onload = main;
 var numPro = 0;
 var precio = 0;
 var productoSeleccionado = false;
+var productos = [];
 
 function main(){
 
@@ -13,21 +14,33 @@ function main(){
 
 function siguienteProducto(e){
 
-    if(numPro == pedidos.length - 1){
+    debugger;
 
-    }else{
-        numPro++;
-        if(productoSeleccionado){
-            precio += pedidos[numPro].precioArticulo;
+    if(productoSeleccionado){
+        precio += pedidos[numPro].precioArticulo;
+
+        var producto = {
+            nombreArticulo: pedidos[numPro].nombreArticulo,
+            precioArticulo: pedidos[numPro].precioArticulo,
+            tallas: pedidos[numPro].tallas,
+            imagen: pedidos[numPro].imagen
         }
-        cargaArticulo();
-        e.preventDefault();
-    }   
+        productos.push(producto);
+    }
+
+    numPro++
+
+    if(numPro == pedidos.length){
+        localStorage.setItem("productos", JSON.stringify(productos));
+        return;
+    }
+
+    cargaArticulo();
+    e.preventDefault();
+       
 }
 
 function sumaTotal(){
-
-    debugger;
     
     var totalEle = document.getElementById("total");
     var tallaEle = document.getElementById("talla");
@@ -36,10 +49,7 @@ function sumaTotal(){
         totalEle.lastChild.parentNode.removeChild(totalEle.lastChild);
     }while(totalEle.lastChild != null);
 
-    console.log(tallaEle.value);
-
     if(tallaEle.value == "0"){
-        console.log("AAA");
         totalEle.appendChild(document.createTextNode((precio) + " €"));
         productoSeleccionado = false;
     }else{
@@ -50,9 +60,11 @@ function sumaTotal(){
 }
 
 function cargaArticulo(){
-
+    
     var nombreInput = document.getElementById("nombreArticulo");
     var precioInput = document.getElementById("precioArticulo");
+
+    productoSeleccionado = false;
 
     nombreInput.setAttribute("value", pedidos[numPro].nombreArticulo);
     precioInput.setAttribute("value", pedidos[numPro].precioArticulo);

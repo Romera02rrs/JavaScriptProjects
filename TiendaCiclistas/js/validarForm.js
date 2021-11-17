@@ -26,7 +26,7 @@ function validaFormulario(e){
     }
 
     if(valido){
-        location.load("FDArticles.html");
+        
     }else{
         error(errores);
         e.preventDefault();
