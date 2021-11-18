@@ -14,8 +14,6 @@ function main(){
 
 function siguienteProducto(e){
 
-    debugger;
-
     if(productoSeleccionado){
         precio += pedidos[numPro].precioArticulo;
 
