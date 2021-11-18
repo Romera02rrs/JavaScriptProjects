@@ -6,7 +6,7 @@ function main(){
 
     obtenerProductos();
     cargaCarrito();
-}
+}//gfadsfg
 
 function obtenerProductos(){
 
