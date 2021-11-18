@@ -1,17 +1,44 @@
 window.onload = main;
 
-var productos;
+var productos = [];
 
 function main(){
 
+    //borrarCarrito();
     obtenerProductos();
     cargaCarrito();
-}//gfadsfg
+    console.log(productos);
+}
 
 function obtenerProductos(){
 
     productos = JSON.parse(localStorage.getItem("productos"));
-    console.log(productos);
+}
+
+function borraProducto(producto){
+    
+    console.log("A");
+
+    var posicion = productos.indexOf(producto);
+
+    console.log(posicion);
+        
+    //productos.splice(posicion, 1);
+    
+    
+    //console.log(productos);
+
+    // localStorage.setItem("prodctos", JSON.stringify(productos));
+    // main();
+}
+
+function borrarCarrito(){
+
+    var articulosEle = document.getElementById("articulos");
+
+    do{
+        articulosEle.lastChild.parentNode.removeChild(articulosEle.lastChild);
+    }while(articulosEle.lastChild != null);
 }
 
 function cargaCarrito(){
@@ -49,12 +76,14 @@ function cargaCarrito(){
                             cardTextEle.appendChild(cardTextTxt);
 
                         var btnPrimary = document.createElement("a");
-                        btnPrimary.setAttribute("href", "#");
                         btnPrimary.setAttribute("class", "btn btn-primary text-end");
                         
                             var iconBtnPrimary = document.createElement("i");
                             iconBtnPrimary.setAttribute("class", "fa fa-trash-o");
                             iconBtnPrimary.setAttribute("aria-hidden", "true");
+
+                            /** LISTENER DE LAS PAPELERAS */
+                            iconBtnPrimary.addEventListener("click", ()=>(borraProducto(producto)));
 
                         btnPrimary.appendChild(iconBtnPrimary);
                     
