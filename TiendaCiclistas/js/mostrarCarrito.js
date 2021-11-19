@@ -4,10 +4,31 @@ var productos = [];
 
 function main(){
 
-    //borrarCarrito();
+    borrarCarrito();
     obtenerProductos();
     cargaCarrito();
-    console.log(productos);
+    calculaPrecio();
+}
+
+function calculaPrecio(){
+
+    var precioFinal = 0;
+    var precioFinalDivEleArr = document.getElementsByClassName("d-flex align-items-end flex-column");
+    var precioFinalDivEle = precioFinalDivEleArr[0];
+
+    productos.forEach(producto => {
+        precioFinal += parseInt(producto.precioArticulo);
+    });
+
+    precioFinalTxt = document.createTextNode(precioFinal + " €");
+    precioFinalEle = document.createElement("h1");
+    precioFinalEle.setAttribute("class", "text-end");
+
+    precioFinalEle.appendChild(precioFinalTxt);
+    precioFinalDivEle.appendChild(precioFinalEle);
+
+    precioFinalDivEle.replaceChildren(precioFinalEle, precioFinalEle);
+
 }
 
 function obtenerProductos(){
@@ -16,20 +37,14 @@ function obtenerProductos(){
 }
 
 function borraProducto(producto){
-    
-    console.log("A");
 
     var posicion = productos.indexOf(producto);
-
-    console.log(posicion);
         
-    //productos.splice(posicion, 1);
+    productos.splice(posicion, 1);
     
-    
-    //console.log(productos);
+    localStorage.setItem("productos", JSON.stringify(productos));
 
-    // localStorage.setItem("prodctos", JSON.stringify(productos));
-    // main();
+    main();
 }
 
 function borrarCarrito(){
@@ -83,7 +98,7 @@ function cargaCarrito(){
                             iconBtnPrimary.setAttribute("aria-hidden", "true");
 
                             /** LISTENER DE LAS PAPELERAS */
-                            iconBtnPrimary.addEventListener("click", ()=>(borraProducto(producto)));
+                            btnPrimary.addEventListener("click", ()=>borraProducto(producto));
 
                         btnPrimary.appendChild(iconBtnPrimary);
                     
