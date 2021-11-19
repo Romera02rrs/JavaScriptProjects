@@ -1,5 +1,6 @@
 window.onload = main;
 var errores = [];
+var usuario;
 
 function main(){
 
@@ -26,12 +27,23 @@ function validaFormulario(e){
     }
 
     if(valido){
-        
+        crearUsuario(nombre.textContent, email.textContent. telefono.textContent);
+        localStorage.setItem("usuario", JSON.stringify(usuario));
     }else{
         error(errores);
         e.preventDefault();
     }
     errores = [];
+}
+
+function crearUsuario(nombre, email, telefono){
+
+    usuario = {
+
+        nombre: nombre,
+        email: email,
+        telefono, telefono
+    }
 }
 
 function valida(elemento){
