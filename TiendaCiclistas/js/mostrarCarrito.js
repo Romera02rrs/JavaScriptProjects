@@ -5,35 +5,37 @@ var productos = [];
 function main(){
 
     borrarCarrito();
-    obtenerProductos();
-    cargaCarrito();
-    calculaPrecio();
+    if(obtenerProductos()){
+        cargaCarrito();
+        calculaPrecio();
+    }
 }
 
 function calculaPrecio(){
 
     var precioFinal = 0;
-    var precioFinalDivEleArr = document.getElementsByClassName("d-flex align-items-end flex-column");
-    var precioFinalDivEle = precioFinalDivEleArr[0];
+    var precioFinalEle = document.getElementById("total");
 
     productos.forEach(producto => {
         precioFinal += parseInt(producto.precioArticulo);
     });
 
     precioFinalTxt = document.createTextNode(precioFinal + " €");
-    precioFinalEle = document.createElement("h1");
-    precioFinalEle.setAttribute("class", "text-end");
 
     precioFinalEle.appendChild(precioFinalTxt);
-    precioFinalDivEle.appendChild(precioFinalEle);
 
-    precioFinalDivEle.replaceChildren(precioFinalEle, precioFinalEle);
+    precioFinalEle.replaceChildren(precioFinalTxt, precioFinalTxt);
 
 }
 
 function obtenerProductos(){
 
     productos = JSON.parse(localStorage.getItem("productos"));
+
+    if(productos){
+        return true;
+    }
+    return false;
 }
 
 function borraProducto(producto){
@@ -74,7 +76,7 @@ function cargaCarrito(){
             var cardBodyEle = document.createElement("div");
             cardBodyEle.setAttribute("class", "card-body");
 
-                var rowEle = document.createElement("div");//sadfasdf
+                var rowEle = document.createElement("div");
                 rowEle.setAttribute("class", "row");
 
                     var colEle = document.createElement("div");
