@@ -74,7 +74,7 @@ function cargaCarrito(){
             var cardBodyEle = document.createElement("div");
             cardBodyEle.setAttribute("class", "card-body");
 
-                var rowEle = document.createElement("div");
+                var rowEle = document.createElement("div");//sadfasdf
                 rowEle.setAttribute("class", "row");
 
                     var colEle = document.createElement("div");
