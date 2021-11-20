@@ -5,6 +5,11 @@ var productos = [];
 function main(){
 
     cargaUsuario();
+    actualizaCarrito();
+}
+
+function actualizaCarrito(){
+
     borrarCarrito();
     if(obtenerProductos()){
         cargaCarrito();
@@ -56,7 +61,7 @@ function borraProducto(producto){
     
     localStorage.setItem("productos", JSON.stringify(productos));
 
-    main();
+    actualizaCarrito();
 }
 
 function borrarCarrito(){
