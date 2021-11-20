@@ -4,11 +4,21 @@ var productos = [];
 
 function main(){
 
+    cargaUsuario();
     borrarCarrito();
     if(obtenerProductos()){
         cargaCarrito();
         calculaPrecio();
     }
+}
+
+function cargaUsuario(){
+
+    var nombreEle = document.getElementById("nombreApellidos");
+
+    var usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    nombreEle.appendChild(document.createTextNode("Carrito de: " + usuario.nombre));
 }
 
 function calculaPrecio(){
@@ -89,7 +99,7 @@ function cargaCarrito(){
 
                         var cardTextEle = document.createElement("p");
                         cardTextEle.setAttribute("class", "card-text");
-                            cardTextTxt = document.createTextNode(producto.tallas[0]);
+                            cardTextTxt = document.createTextNode(producto.tallas);
                             cardTextEle.appendChild(cardTextTxt);
 
                         var btnPrimary = document.createElement("a");
