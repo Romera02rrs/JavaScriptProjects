@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Tabla de multiplicar</title>
+</head>
+<body style="text-align: center;">
+    <h1>Tabla de multiplicar</h1>
+    <div id="tablaDiv">
+
+    </div>
+
+    <script>
+        $(document).ready(main);
+
+        function main(){
+            
+            crearTabla();
+        }
+
+        function crearTabla(){
+
+            var header = ["Multiplicando", "Multiplicador", "Producto"];
+            var numero = 0;
+            var num = 0;
+
+            $(document.createElement("table"))
+            .attr("id", "tabla").appendTo("#tablaDiv")
+            .css({
+                "border":"15px solid #8E44AD",
+                "border-radius": "15px",
+                "padding":"10px",
+                "background-color":"#A569BD",
+                "text-align":"center",
+                "font-family":"roboto, arial",
+                "margin":"auto"
+                });
+
+            for (var i = 0; i < 3; i++) {
+                $(document.createElement("td")).attr("id", "td"+i).html("<th>"+header[i]+"</th>").appendTo("#tabla")
+                .css({
+                    "padding":"10px",
+                });
+                for(var j = 0; j < 10; j++){
+                    numero ++;
+                    $(document.createElement("tr")).html("<br>").appendTo("#td"+i);
+
+                    for(var x = 0; x < 10; x++){
+
+                        var fila = $(document.createElement("tr"));
+
+                        if(x % 2 == 0){
+                            $(fila)
+                            .css({
+                                "background-color":"#8E44AD",
+                                "border-radius": "15px"
+                            });
+                        }
+                        if(i == 0){;
+                            $(fila).html(numero).appendTo("#td"+i);
+                        }
+                        if(i == 1){
+                            $(fila).html(x+1).appendTo("#td"+i);
+                        }
+                        if(i == 2){
+                            num++;
+                            console.log(j+1);
+                            var res = (j+1) * (x+1);
+                            $(fila).html(res).appendTo("#td"+i);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

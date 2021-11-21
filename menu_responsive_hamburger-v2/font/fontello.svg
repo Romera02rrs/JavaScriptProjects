@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="down-open" unicode="&#xe800;" d="M939 399l-414-413q-10-11-25-11t-25 11l-414 413q-11 11-11 26t11 25l93 92q10 11 25 11t25-11l296-296 296 296q11 11 25 11t26-11l92-92q11-11 11-25t-11-26z" horiz-adv-x="1000" />
+
+<glyph glyph-name="menu" unicode="&#xf0c9;" d="M857 100v-71q0-15-10-25t-26-11h-785q-15 0-25 11t-11 25v71q0 15 11 25t25 11h785q15 0 26-11t10-25z m0 286v-72q0-14-10-25t-26-10h-785q-15 0-25 10t-11 25v72q0 14 11 25t25 10h785q15 0 26-10t10-25z m0 285v-71q0-14-10-25t-26-11h-785q-15 0-25 11t-11 25v71q0 15 11 26t25 10h785q15 0 26-10t10-26z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="direction" unicode="&#xf124;" d="M782 655l-357-714q-10-20-32-20-3 0-8 1-13 3-20 13t-8 22v322h-321q-13 0-22 7t-13 20 2 23 17 17l714 357q7 4 16 4 15 0 25-10 9-8 10-20t-3-22z" horiz-adv-x="785.7" />
+
+<glyph glyph-name="bullseye" unicode="&#xf140;" d="M571 350q0-59-41-101t-101-42-101 42-42 101 42 101 101 42 101-42 41-101z m72 0q0 89-63 152t-151 62-152-62-63-152 63-151 152-63 151 63 63 151z m71 0q0-118-83-202t-202-84-202 84-84 202 84 202 202 84 202-84 83-202z m72 0q0 73-29 139t-76 114-114 76-138 28-139-28-114-76-76-114-29-139 29-139 76-113 114-77 139-28 138 28 114 77 76 113 29 139z m71 0q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
+</font>
+</defs>
+</svg>
