@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Coches Usados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <script src="js/bbdd.js"></script>
+    <script src="js/coches.js"></script>  
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">THU</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page header with logo and tagline-->
+    <header class="py-3 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-2">
+                <h1 class="fw-bolder">Tienda de hipercoches Usados</h1>
+                <p class="lead mb-0"></p>
+            </div>
+        </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" id="listado">
+
+                <!-- AQUI VAN TODOS LOS COCHES -->
+
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+
+
+                
+                <!-- Search widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Buscar</div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Introduce marca o modelo..."
+                                aria-label="Introduce marca o modelo..." aria-describedby="button-search" id="marcaModelo"/>
+                            <button id="ir" class="btn btn-primary"  type="button">Ir!</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filtros -->
+                <div class="card mb-4">
+                    <div class="card-header">Filtrar</div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="anyoDesde" class="col-sm-4 col-form-label">Año Matriculación</label>
+                                <div class="col-sm-4">
+                                    <select id="anyoDesde" class="form-control mb-3">
+                                        
+                                     
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select id="anyoHasta" class="form-control mb-3">
+                                        
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="KmDesde" class="col-sm-4 col-form-label">Kilometros</label>
+                                <div class="col-sm-4">
+                                    <select id="kmDesde" class="form-control mb-3">
+                                        <option value="0" selected>Desde</option>
+                                        <option value="5000">5.000</option>
+                                        <option value="15000">15.000</option>
+                                        <option value="30000">30.000</option>
+                                        <option value="50000">50.000</option>
+                                        <option value="75000">75.000</option>
+                                        <option value="100000">100.000</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select id="kmHasta" class="form-control mb-3">
+                                        <option  value="1000000" selected>Hasta</option>
+                                        <option value="5000">5.000</option>
+                                        <option value="15000">15.000</option>
+                                        <option value="30000">30.000</option>
+                                        <option value="50000">50.000</option>
+                                        <option value="75000">75.000</option>
+                                        <option value="100000">100.000</option>
+                                        <option value="1000000">+ de 100.000</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="cambio" class="col-sm-2 col-form-label">Cambio</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cambio" value="" checked>
+                                <label class="form-check-label mb-3" for="inlineCheckbox1" cheched>Todos</label>
+                              </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cambio" value="Automático">
+                                <label class="form-check-label mb-3" for="inlineCheckbox1">Automático</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cambio" value="Manual">
+                                <label class="form-check-label mb-3" for="inlineCheckbox2">Manual</label>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="combustible" class="col-sm-5 col-form-label">Combustible</label>
+                                <div class="col-sm-7">
+                                    <select id="combustible" class="form-control mb-2">
+                                        <option selected value="">todos</option>
+                                        <option value="Gasolina">Gasolina</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Hibrido">Hibrido</option>
+                                        <option value="Eléctrico">Eléctrico</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="text-danger" id="errorMensaje"></p>
+                            <button type="submit" class="btn btn-primary" id="filtrar">Aplicar</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header">THU</div>
+                <div class="card-body">Tienda especializada en la venta exclusiva de supercoches</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
