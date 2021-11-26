@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="dataCode.js"></script>
+    <title>Fast Code</title>
+</head>
+<body>
+    <div>
+        <label for="velocidad">Velocidad: </label>
+        <input type="number" id="velocidad">
+    </div>
+    <p id="parrafo"></p>
+
+    <script>
+
+        window.addEventListener("keydown", escribe);
+
+        var parrafo = document.getElementById("parrafo");
+        var velocidadEle = document.getElementById("velocidad");
+        velocidadEle.addEventListener("change", cambiaVelocidad);
+        
+        var velocidad = 1;
+        var pos = 0;
+        var datosArr = data.split('');
+
+        function cambiaVelocidad(){
+
+            if(velocidadEle.value != 0){
+                velocidad = velocidadEle.value;
+            }else{
+                velocidad = 1;
+            }
+        }
+
+        function escribe(){
+
+            for (let i = 0; i < velocidad; i++) {
+                letra();
+            }
+        }
+
+        function letra(){
+
+            var txt = document.createTextNode(datosArr[pos]);
+            pos ++;
+            parrafo.appendChild(txt);
+        }
+
+    </script>
+</body>
+</html>
