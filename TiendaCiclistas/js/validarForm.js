@@ -11,11 +11,9 @@ function validaFormulario(e){
 
     var valido = true;
     
-    var Adesde = document.getElementById("anyoDesde");
-    var Ahasta = document.getElementById("anyoHasta");
-
-    var KMdesde = document.getElementById("kmDesde");
-    var KMhasta = document.getElementById("kmHasta"); 
+    var nombre = document.getElementById("nombre");
+    var email = document.getElementById("email");
+    var telefono = document.getElementById("telefono");
 
     //debugger;
     if(!valida(nombre)){
