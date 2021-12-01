@@ -1,9 +1,20 @@
 
 let arrPoke = new Array;
 window.onload = main;
+var num = 0;
 
 function main  (){
-  console.log("Conttol Scrool",document.body.scrollHeight - window.innerHeight,  window.scrollY)
+  document.addEventListener("scroll", (e)=>{
+    let grandaria = document.body.scrollHeight - (window.innerHeight * 2);
+    let posicion =  window.scrollY;
+    console.log(grandaria +" - "+ posicion);
+    if(grandaria < posicion){
+      num += 10;
+      cargarLista();
+      console.log("Crgar mas");
+      return;
+    }
+  });
 // cridar al api 
 fetch('https://pokeapi.co/api/v2/pokemon?limit=1100&offset=0')
   .then(response => response.json())
@@ -13,23 +24,17 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=1100&offset=0')
      //console.log(arrPoke);
      cargarLista();
   });
-
-
 }
 
 function cargarLista (){
 // recorrer Array
-for(let i=0;i<100; i++){
-  cargarPagina(arrPoke[i],i);
+for(let i=0;i<10; i++){
+  cargarPagina(arrPoke[i+num],i+num);
 };
-
 }
-
-
    
 
 function cargarPagina (element, ind){
-
     fetch(element.url)
      .then(response => response.json())
      .then(data =>{
