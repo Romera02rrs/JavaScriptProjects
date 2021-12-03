@@ -1,7 +1,11 @@
 let arrPoke = new Array;
-window.onload = main;
 var num = 0;
 var cantidad = 10;
+<<<<<<< HEAD
+=======
+
+window.onload = main;
+>>>>>>> 04897f65218565788b834377e19d2e0a3995a4ef
 
 function main  (){
   document.addEventListener("scroll", (e)=>{
@@ -9,13 +13,22 @@ function main  (){
     let posicion =  window.scrollY;
     //console.log(grandaria +" - "+ posicion);
     if(grandaria == posicion){
+<<<<<<< HEAD
       if(num+cantidad != arrPoke.length){
+=======
+      console.log(arrPoke.length + " - " + (num+cantidad));
+      if((num+cantidad) != arrPoke.length){
+>>>>>>> 04897f65218565788b834377e19d2e0a3995a4ef
         num += 10;
         cargarLista();
         console.log("Cargar mas");
         return;
       }else{
+<<<<<<< HEAD
         console.log("NO QUEDAN MAS POKÉMONS");
+=======
+        console.log("No quedan mas POKEMONS");
+>>>>>>> 04897f65218565788b834377e19d2e0a3995a4ef
       }
     }
   });
