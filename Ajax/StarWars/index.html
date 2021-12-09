@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "http://localhost:3006/db.json", true);
+        xmlhttp.send();
         xmlhttp.onreadystatechange = function () {
             console.log(this.readyState, this.status);
+            console.log(this.responseText);
         }
-
-        xmlhttp.open("GET", "http://localhost:3006/people", true);
-        xmlhttp.send();
     </script>
     <title>Star Wars</title>
 </head>
