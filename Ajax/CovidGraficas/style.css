@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#tabla {
+    margin: 1vw;
+    display: inline-flex;
+    margin-top: 50px;
+    border: 1px solid black;
+    text-align: left;
+}
+
+#tabla thead th{
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
+    font-weight: normal;
+    font-size: 25px;
+    padding: 10px;
+}
+
+#tabla tbody {
+    padding: 10px;
+}
+
+#tabla tbody th {
+    font-weight: bold;
+}
+
+#tabla tfoot {
+    font-size: 12px;
+}
