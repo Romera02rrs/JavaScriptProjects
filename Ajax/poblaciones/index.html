@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="script.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    
+    <h1>Carregar les poblacions</h1>
+    <button id="btn">Carregar Poblacions</button>
+    <p>S'han carregat <span id="numeroPoblaciones">0</span> poblacions</p>
+    <h2>Filtre</h2>
+    <p>Poblacions:</p>
+    <div class="ui-widget" id="poblaciones">
+        <label for="tags">Tags: </label>
+        <input id="tags">
+      </div>
 </body>
 </html>
