@@ -1,5 +1,4 @@
 window.onload = main;
-var resultado;
 
 function main(){
     obtenerDatosApi();
@@ -12,15 +11,33 @@ function obtenerDatosApi (){
         if (this.readyState==4 && this.status==200){
             let respuesta = JSON.parse(this.responseText);
            
-            resultado = respuesta.dates["2020-03-22"].countries.Spain.regions[7].sub_regions;
+            var resultado = respuesta.dates["2021-12-15"].countries.Spain.regions[6].sub_regions;
             
-            cargarDatos();
+            cargarDatos(resultado);
         }
     }
-    xmlhttp.open("GET","https://api.covid19tracking.narrativa.com/api/2020-03-22/country/spain", true);
+    xmlhttp.open("GET","https://api.covid19tracking.narrativa.com/api/2021-12-15/country/spain", true);
     xmlhttp.send();
 }
 
-function cargarDatos(){
+function cargarDatos(resultado){
+    console.log(resultado);
+
+    for (let i = 0; i < 3; i++) {
+
+        let totalInfectadosEle = document.getElementsByClassName("totalInfectados");
+        totalInfectadosEle[i].innerHTML = resultado[i].today_confirmed;
+        
+        let totalDifuntosEle = document.getElementsByClassName("totalDifuntos");
+        totalDifuntosEle[i].innerHTML = resultado[i].today_deaths;
     
+        let nuevosInfectadosEle = document.getElementsByClassName("nuevosInfectados");
+        nuevosInfectadosEle[i].innerHTML = resultado[i].today_new_confirmed;
+    
+        let nuevosDifuntosEle = document.getElementsByClassName("nuevosDifuntos");
+        nuevosDifuntosEle[i].innerHTML = resultado[i].today_new_deaths;
+
+        let ultimaActualizacion = document.getElementsByClassName("ultimaActualizacion");
+        ultimaActualizacion[i].innerHTML = "Última actualización el " + resultado[i].date;
+    }
 }
