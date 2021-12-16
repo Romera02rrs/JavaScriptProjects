@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llistat de Llibres</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .error {
+            border: solid 2px #FF0000;
+        }
+    </style>
+    <script src="scripts/listarLibros.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Llistat de Llibres</h1>
+        <button class=" btn btn-primary btn-lg my-3" id="nouLlibre"> Nou Llibre</button></br>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Esborrar</th>
+                    <th scope="col">Modificar</th>
+                    <th scope="col">Títol</th>
+                    <th scope="col">Editorial</th>
+                    <th scope="col">Preu</th>
+                    <th scope="col">Autor</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="files">
+            </tbody>
+        </table>
+
+
+
+    </div>
+</body>
+
+</html>
