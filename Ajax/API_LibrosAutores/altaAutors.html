@@ -13,17 +13,18 @@
         }
     </style>
     <script src="scripts/altaAutores.js"></script>
+    <script src="scripts/enviarDatos.js"></script>
 </head>
 
 <body>
     <div class="container">
         <h1>Alta d'autor</h1>
-        <form action="#">
+        <form action="llistatAutors.html">
             <div class="form-group row">
 
                 <label for="nombre" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombre" required pattern="^[a-zA-ZÀ-ÿ ]*$"></br>
+                    <input type="text" class="form-control" id="nombre" required></br>
                 </div>
 
             </div>
@@ -31,7 +32,7 @@
 
                 <label for="nacimiento" class="col-sm-2 col-form-label">Any Naixement</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="naciemiento" required pattern="^[0-9]4$"></br>
+                    <input type="number" class="form-control" id="nacimiento" required min="0" max="2000"></br>
                 </div>
 
             </div>
