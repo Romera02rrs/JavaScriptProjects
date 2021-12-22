@@ -8,8 +8,6 @@ function main (){
 
 function validaFormulario(e){ 
 
-    e.preventDefault();
-
     var valido = true;
 
     if(!validaNombre()){
@@ -21,7 +19,7 @@ function validaFormulario(e){
     }
 
     if(valido){
-        altaAutor();
+        
     }else{
         imprimeError(errores);
         e.preventDefault();
@@ -60,14 +58,18 @@ function imprimeError(errores){
 
     var mensajes = document.getElementById("missatgeError");
 
-    var lista = document.createElement("ul");/altaAutors.html
+    var lista = document.createElement("ul");
+
+
+    errores.forEach(error => {
+
         lis = document.createElement("li");
 
         var msj = document.createTextNode(error);
         
         lis.appendChild(msj);
         lista.appendChild(lis);
-    });
+    })
 
     mensajes.appendChild(lista);
     mensajes.replaceChildren(lista, lista);

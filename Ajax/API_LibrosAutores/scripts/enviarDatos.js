@@ -1,4 +1,4 @@
-function altaAutor(datos){
+function altaAutor(){
 
     var autor = creaAutor();
 
