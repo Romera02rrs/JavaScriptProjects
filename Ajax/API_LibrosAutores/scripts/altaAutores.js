@@ -1,76 +1,70 @@
-window.onload = main;
-var errores = [];
+window.onload = iniciar;
 
-function main (){
+function iniciar() {
 
-    document.getElementById("enviar").addEventListener("click",validaFormulario, false);
+    document.getElementById("enviar").addEventListener("click", validar, false);
 }
 
-function validaFormulario(e){ 
-
-    var valido = true;
-
-    if(!validaNombre()){
-        valido = false;
+function validarNom() {
+    var element = document.getElementById("nombre");
+    if (!element.checkValidity()) {
+        if (element.validity.valueMissing) {
+            error2(element, "Deus d'introduïr un nom.");
+        }
+        if (element.validity.patternMismatch) {
+            error2(element, "El nom ha de tindre entre mas de 2 letras y sin numeros.");
+        }
+        //error(element);
+        return false;
     }
+    return true;
 
-    if(!validaNacimiento()){
-        valido = false;
+}
+
+
+function validarNeix() {
+    var element = document.getElementById("nacimiento");
+    if (!element.checkValidity()) {
+        if (element.validity.valueMissing) {
+            error2(element, "Deus d'introduïr una data.");
+        }
+        if (element.validity.rangeOverflow) {
+            error2(element, "La data màxima ha de ser inferior a 2000.");
+        }
+        if (element.validity.rangeUnderflow) {
+            error2(element, "La data mínima ha de ser superior a 0.");
+        }
+        //error(element);
+        return false;
     }
+    return true;
+}
 
-    if(valido){
-        
-    }else{
-        imprimeError(errores);
+function validar(e) {
+    e.preventDefault();
+    esborrarError();
+    if (validarNom() && validarNeix()) {
+
+        altaAutor();
+        return true;
+
+    } else {
         e.preventDefault();
-    }
-    errores = [];
-}
-
-function validaNombre(){
-    let nombre = document.getElementById("nombre");
-
-    if (nombre.checkValidity()){
-        nombre.setAttribute("class", "form-control");
-        return true;
-    }else{
-        errores.push("Nombre no es válido");
-        nombre.setAttribute("class", "form-control border-danger");
         return false;
     }
 }
 
-function validaNacimiento(){
-
-    let nacimiento = document.getElementById("nacimiento");
-
-    if (nacimiento.checkValidity()){
-        nacimiento.setAttribute("class", "form-control");
-        return true;
-    }else{
-        errores.push("Año de nacimiento no es válido");
-        nacimiento.setAttribute("class", "form-control border-danger");
-        return false;
-    }
+function error2(element, missatge) {
+    document.getElementById("missatgeError").innerHTML = missatge;
+    element.className = "form-control error";
+    element.focus();
 }
 
-function imprimeError(errores){
 
-    var mensajes = document.getElementById("missatgeError");
-
-    var lista = document.createElement("ul");
-
-
-    errores.forEach(error => {
-
-        lis = document.createElement("li");
-
-        var msj = document.createTextNode(error);
-        
-        lis.appendChild(msj);
-        lista.appendChild(lis);
-    })
-
-    mensajes.appendChild(lista);
-    mensajes.replaceChildren(lista, lista);
+function esborrarError() {
+    var formulari = document.forms[0];
+    for (var i = 0; i < formulari.elements.length; i++) {
+        formulari.elements[i].className = "form-control";
+    }
+    document.getElementById("enviar").className = "btn btn-primary";
 }

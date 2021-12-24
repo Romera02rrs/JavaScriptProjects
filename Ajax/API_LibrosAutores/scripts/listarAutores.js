@@ -32,7 +32,8 @@ function cargarDatos(resultado){
         var columna1 = document.createElement("td");
         var esborrarBtb = document.createElement("button");
         esborrarBtb.setAttribute("class", "btn btn-primary btn-lg my-3");
-        esborrarBtb.setAttribute("id", resultado.id);
+        esborrarBtb.setAttribute("id", resultado[i]._id);
+        esborrarBtb.addEventListener("click", comprobar);
         esborrarBtb.innerHTML = "Esborrar";
         columna1.appendChild(esborrarBtb);
         fila.appendChild(columna1);
@@ -40,7 +41,8 @@ function cargarDatos(resultado){
         var columna2 = document.createElement("td");
         var ModificarBtn = document.createElement("button");
         ModificarBtn.setAttribute("class", "btn btn-primary btn-lg my-3");
-        ModificarBtn.setAttribute("id", resultado.id);
+        ModificarBtn.setAttribute("id", resultado[i]._id);
+        ModificarBtn.addEventListener("click", modidficarAutor)
         ModificarBtn.innerHTML = "Modificar";
         columna2.appendChild(ModificarBtn);
         fila.appendChild(columna2);
@@ -60,4 +62,43 @@ function cargarDatos(resultado){
         filas.appendChild(fila);
     }
 
+}
+
+function modidficarAutor() {
+    let id = this.id;
+    console.log(this.id);
+
+    localStorage.setItem("id-Autor", id);
+    window.location.href = "modificarAutors.html";
+}
+
+function borrar(id) {
+    fetch("https://serverred.es/api/autores/" + id, {
+        method: "DELETE"
+    })
+        .then(response => response.json())
+        .then(data => {console.log(data); location.reload()})
+        .catch(error => console.log(error));
+}
+
+function comprobar() {
+    
+    console.log(this.id);
+
+    fetch('https://serverred.es/api/libros/')
+        .then(response => response.json())
+        .then(data => {
+            var valido = true;
+            data.resultado.forEach(element => {
+                if (element.autor == this.id) {
+                    valido = false;
+                }
+            })
+            if (valido) {
+                borrar(this.id);
+            } else {
+                alert("No es posible borrar un autor con libros");
+            }
+        })
+        .catch(error => console.log(error));
 }

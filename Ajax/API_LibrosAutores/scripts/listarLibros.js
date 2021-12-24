@@ -1,7 +1,20 @@
 window.onload = main;
+var listaAutores;
 
 function main(){
-    obtenerDatosApi();
+    obtenerDatosApiAutores();
+}
+
+function obtenerDatosApiAutores(){
+
+    fetch("https://www.serverred.es/api/autores")
+    .then(response => response.json())
+    .then(data => {
+        listaAutores = data.resultado;
+        console.log(listaAutores);
+        obtenerDatosApi();
+    })
+    .catch(error => console.log(error));
 }
 
 function obtenerDatosApi (){
@@ -32,7 +45,8 @@ function cargarDatos(resultado){
         var columna1 = document.createElement("td");
         var esborrarBtb = document.createElement("button");
         esborrarBtb.setAttribute("class", "btn btn-primary btn-lg my-3");
-        esborrarBtb.setAttribute("id", resultado.id);
+        esborrarBtb.setAttribute("id", resultado[i]._id);
+        esborrarBtb.addEventListener("click", borrar);
         esborrarBtb.innerHTML = "Esborrar";
         columna1.appendChild(esborrarBtb);
         fila.appendChild(columna1);
@@ -40,7 +54,7 @@ function cargarDatos(resultado){
         var columna2 = document.createElement("td");
         var ModificarBtn = document.createElement("button");
         ModificarBtn.setAttribute("class", "btn btn-primary btn-lg my-3");
-        ModificarBtn.setAttribute("id", resultado.id);
+        ModificarBtn.setAttribute("id", resultado[i]._id);
         ModificarBtn.innerHTML = "Modificar";
         columna2.appendChild(ModificarBtn);
         fila.appendChild(columna2);
@@ -65,11 +79,26 @@ function cargarDatos(resultado){
 
         var columna6 = document.createElement("td");
         var autor = document.createElement("p");
-        autor.innerHTML = resultado[i].autor;
+        autor.innerHTML = getName(resultado[i].autor);
         columna6.appendChild(autor);
         fila.appendChild(columna6);
         
         filas.appendChild(fila);
     }
+}
 
+function getName(id){
+    
+    var nombre = "No tiene autor";
+    listaAutores.forEach(autor => {
+        if(autor._id == id){
+            nombre = autor.nombre;
+        }
+    });
+    return nombre;
+}
+
+function borrar() {
+    console.log(this.id);
+    fetch("https://www.serverred.es/api/libros/" + this.id, {method: "DELETE"});
 }
