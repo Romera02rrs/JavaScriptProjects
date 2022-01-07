@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Llibre</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .error {
+            border: solid 2px #FF0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Confirmar Reserva</h1>
+        <form>
+            <div class="form-group row">
+                <label for="usuari" class="col-sm-2 col-form-label">Usuari</label>
+            <div class="col-sm-10">
+                <input type="text"  class="form-control" id="usuari" readonly></br>
+            </div>
+            </div>
+            
+            
+            <div class="form-group row">
+            <label for="llibre" class="col-sm-2 col-form-label" >Llibre</label>
+    
+            <div class="col-sm-10">
+                <input type="text"  class="form-control" id="llibre" readonly></br>
+            </div>
+            </div>
+            
+            <div class="form-group row">
+            <label for="dataPrestec" class="col-sm-2 col-form-label" >Data prestec</label>
+    
+            <div class="col-sm-10">
+                <input type="date"  class="form-control" id="dataPrestec" >
+                <p  class="font-weight-light text-danger"> La data del prestec NO pot ser superior a la data actual </p>    
+            </div>
+            </div>
+            <div class="form-group row">
+                <label for="dataDevolucio" class="col-sm-2 col-form-label" >Data devolució</label>
+        
+                <div class="col-sm-10">
+                    <p id="dataDevolucio" class="col-sm-2 col-form-label font-weight-bold text-danger " ></p>
+                </div>
+                </div>
+       
+            <button id="btnReservar" class="btn btn-primary"> Reservar</button>      
+            <h4 id="missatgeError"></h4>
+        </form>
+
+
+
+    </div>
+</body>
+
+</html>

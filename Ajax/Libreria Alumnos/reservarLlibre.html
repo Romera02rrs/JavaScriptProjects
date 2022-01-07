@@ -4,28 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Llistat d'autors</title>
+    <title>Reservar Llibre</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <style>
         .error {
             border: solid 2px #FF0000;
         }
     </style>
-    <script src="scripts/carregarAutors.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>Llistat d'autors</h1>
-        <button class=" btn btn-primary btn-lg my-3" id="nouAutor">Nou Autor</button></br>
+        <h1>Seleccionar Llibre</h1>
+        <h4> Reserva per a l'usuari  <spam class="font-weight-bold" id="usuari"></spam></h4>
+        <input type="text"  class="form-control" id="titol" placeholder="Filtre titol"></br>
         <table class="table">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">Esborrar</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Any Naiximent</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Títol</th>
+                    <th scope="col">Editorial</th>
+                    <th scope="col">Preu</th>
+                    <th scope="col">Autor</th>
+                    
                 </tr>
             </thead>
             <tbody id="files">

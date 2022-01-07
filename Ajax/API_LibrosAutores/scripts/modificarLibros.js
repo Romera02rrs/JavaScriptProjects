@@ -1,8 +1,25 @@
 window.onload = main;
+var id;
+var libro;
 var datosAutores;
 
 function main() {
-    obtenerDatosApiAutores();
+    getId();
+    getLibro();
+    document.getElementById("enviar").addEventListener("click", validar, false);
+}
+
+function getId(){
+    id = localStorage.getItem("id-Libro");
+    console.log(id);
+}
+
+function getLibro() {
+    fetch("https://serverred.es/api/libros/" + id)
+    .then(response => response.json())
+    .then(obtenerDatosApiAutores())
+    .then(data => creaLibro(data.resultado))
+    .catch(error => console.log(error))
 }
 
 function obtenerDatosApiAutores() {
@@ -10,12 +27,37 @@ function obtenerDatosApiAutores() {
     .then(response => response.json())
     .then(data => {
         datosAutores = data.resultado;
-        cargarNombresAutores();
-        document.getElementById("btnGravar").addEventListener("click", validar, false);
     })
 }
 
-function cargarNombresAutores() {
+function creaLibro(datos){
+
+    libro = {
+        titulo: datos.titulo,
+        editorial: datos.editorial,
+        precio: datos.precio,
+        autor: datos.autor
+    }
+
+    setValues();
+}
+
+function setValues() {
+
+    let titulo = document.getElementById("titol");
+    let editorial = document.getElementById("editorial");
+    let precio = document.getElementById("preu");
+    var autor = document.getElementById("autor");
+    setTimeout(function () {
+        cargarNombresAutores(libro.autor);
+    }, 100);
+
+    titulo.setAttribute("value", libro.titulo);
+    editorial.setAttribute("value", libro.editorial);
+    precio.setAttribute("value", libro.precio);
+}
+
+function cargarNombresAutores(nombre) {
     var selectAutores = document.getElementById("autor");
     var div = document.getElementById("sel");
     datosAutores.forEach(element => {
@@ -23,20 +65,55 @@ function cargarNombresAutores() {
         var texto = document.createTextNode(element.nombre)
         
         opcion.appendChild(texto);
+
+        if(nombre == element._id){
+            opcion.setAttribute("selected", true)
+        }
+
         opcion.setAttribute("value", element._id)
         selectAutores.appendChild(opcion);
     });
     div.replaceChildren(selectAutores, selectAutores);
 }
+   
+function nuevoLibro(){
 
-/* ----------- VALIDACIÓN ---------- */
+    let tituloEle = document.getElementById("titol").value;
+    let editorialEle = document.getElementById("editorial").value;
+    let precioEle = document.getElementById("preu").value;
+    var autorEle = document.getElementById("autor").value;
+
+    libro = {
+        titulo: tituloEle,
+        editorial: editorialEle,
+        precio: precioEle,
+        autor: autorEle
+    }
+}
+
+function actualizaLibro() {
+    fetch("https://serverred.es/api/libros/" + id, {
+
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(libro)
+    })
+    .then(response => response.json())
+    .then(data => {console.log(data); window.location.href = "llistatllibres.html"})
+    .catch(error => console.log(error));
+}
+
+/* ---------- VALIDACIÓN ---------- */
 
 function validar(e) {
     e.preventDefault();
     esborrarError();
     if (validarTitulo() && validarEditorial() && validarPrecio()) {
 
-        altaLibro();
+        nuevoLibro();
+        actualizaLibro();
         return true;
 
     } else {
@@ -44,7 +121,6 @@ function validar(e) {
         return false;
     }
 }
-
 
 function validarTitulo() {
     var element = document.getElementById("titol");
@@ -103,5 +179,5 @@ function esborrarError() {
     for (var i = 0; i < formulari.elements.length; i++) {
         formulari.elements[i].className = "form-control";
     }
-    document.getElementById("btnGravar").className = "btn btn-primary";
+    document.getElementById("enviar").className = "btn btn-primary";
 }

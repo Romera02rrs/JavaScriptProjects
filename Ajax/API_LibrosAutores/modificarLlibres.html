@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulari Alta Llibres</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style> .error {
-        border:solid 2px #FF0000; 
-}
- </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .error {
+            border: solid 2px #FF0000;
+        }
+    </style>
+    <script src="scripts/modificarLibros.js"></script>
 </head>
-<body>
-<div class="container">
-    <h1>Alta llibre</h1>
-    <form>
-        <div class="form-group row">
-            <label for="titol" class="col-sm-2 col-form-label">títol</label>
-        <div class="col-sm-10">
-            <input type="text"  class="form-control" id="titol"></br>
-        </div>
-        </div>
-        <div class="form-group row">
-        
-        <label for="editorial" class="col-sm-2 col-form-label" >Editorial</label>
 
-            <div class="col-sm-10">
-            <input type="text"  class="form-control" id="editorial" ></br>
-            </div>
-        </div>
-        <div class="form-group row">
-        
-            <label for="preu" class="col-sm-2 col-form-label" >Preu</label>
-    
+<body>
+    <div class="container">
+        <h1>Alta llibre</h1>
+        <form>
+            <div class="form-group row">
+                <label for="titol" class="col-sm-2 col-form-label">títol</label>
                 <div class="col-sm-10">
-                <input type="number"  class="form-control"></br>
+                    <input type="text" class="form-control" id="titol" required pattern="^[a-zA-ZÀ-ÿ ]{3,}$"></br>
                 </div>
             </div>
             <div class="form-group row">
-        
-                <label for="autor" class="col-sm-2 col-form-label" >Autor</label>
-        
-                    <div class="col-sm-10">
-                        <select  class="form-control" name="autor" id="autor">     
-                        </select>    
-                    </div>
-                </div>    
 
-        <button id="btnGravar" class="btn btn-primary">  Gravar</button>      
-        <h4 id="missatgeError"></h4>
-    </form>
-</div>
+                <label for="editorial" class="col-sm-2 col-form-label" required pattern="^[a-zA-ZÀ-ÿ ]*$">Editorial</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="editorial"></br>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <label for="preu" class="col-sm-2 col-form-label">Preu</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="preu" required min="0"></br>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <label for="autor" class="col-sm-2 col-form-label">Autor</label>
+
+                <div class="col-sm-10">
+                    <div id="sel">
+                        <select class="form-control" name="autor" id="autor"></select>
+                    </div>
+                </div>
+            </div>
+
+            <button id="enviar" class="btn btn-primary"> Gravar</button>
+            <h4 id="missatgeError"></h4>
+        </form>
+    </div>
 </body>
+
 </html>

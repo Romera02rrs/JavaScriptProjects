@@ -33,6 +33,7 @@ function creaAutor(){
 function altaLibro() {
 
     var libro = creaLibro();
+    console.log(libro);
 
     fetch("https://www.serverred.es/api/libros", {
         method: "POST",
@@ -56,7 +57,7 @@ function creaLibro(){
     let precioEle = document.getElementById("preu").value;
     let autorEle = document.getElementById("autor").value;
 
-    let libro = {
+    var libro = {
         titulo: tituloEle,
         editorial: editorialEle,
         precio: precioEle,

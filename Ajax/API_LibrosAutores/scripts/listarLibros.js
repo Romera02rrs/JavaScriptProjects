@@ -55,6 +55,7 @@ function cargarDatos(resultado){
         var ModificarBtn = document.createElement("button");
         ModificarBtn.setAttribute("class", "btn btn-primary btn-lg my-3");
         ModificarBtn.setAttribute("id", resultado[i]._id);
+        ModificarBtn.addEventListener("click", modificarLibro);
         ModificarBtn.innerHTML = "Modificar";
         columna2.appendChild(ModificarBtn);
         fila.appendChild(columna2);
@@ -85,6 +86,14 @@ function cargarDatos(resultado){
         
         filas.appendChild(fila);
     }
+}
+
+function modificarLibro() {
+    let id = this.id;
+    console.log(this.id);
+
+    localStorage.setItem("id-Libro", id);
+    window.location.href = "modificarLlibres.html";
 }
 
 function getName(id){
