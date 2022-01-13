@@ -82,18 +82,18 @@
       </div>
       <div class="form-group">
         <label for="email">Correu electrònic</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Introduir email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Introduir email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}">
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
             <label for="password">Contrasenya</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya" required pattern="{6}">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya" required pattern="^.{6,}$">
           </div>
           <div class="col">
             <label for="passwordc">Repetir contrasenya</label>
             <input type="password" class="form-control" id="passwordc" name="passwordc"
-              placeholder=" Repetir contrasenya" required pattern="{6}">
+              placeholder=" Repetir contrasenya" required pattern="^.{6,}$">
           </div>
         </div>
 

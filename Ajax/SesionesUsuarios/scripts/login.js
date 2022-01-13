@@ -19,7 +19,7 @@ function registrarusuario(){
         if(data.error == null){
             console.log("USUARIO CREADO");
         }else{
-            error2(document.getElementById("nom"), data.error)
+            error2(document.getElementById("email"), data.error)
         }
         // window.location.href = "llistatLlibres.html"
     })
@@ -30,9 +30,8 @@ function registrarusuario(){
 
 function creaUsuario(){
     let usuario = {
-        name: document.getElementById("nom").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("passwordc").value,
+        name: document.getElementById("email").value,
+        password: document.getElementById("password").value,
     }
     return usuario
 }
@@ -42,7 +41,7 @@ function creaUsuario(){
 function validar(e) {
     e.preventDefault()
     esborrarError()
-    if (validarNombre() && validarCorreo() && validarClave()) {
+    if (validarCorreo() && validarClave()) {
 
         console.log("Valido")
         registrarusuario()
@@ -52,22 +51,6 @@ function validar(e) {
         e.preventDefault()
         return false
     }
-}
-
-
-function validarNombre() {
-    var element = document.getElementById("nom")
-    if (!element.checkValidity()) {
-        if (element.validity.valueMissing) {
-            error2(element, "Introduce un nombre")
-        }
-        if (element.validity.patternMismatch) {
-            error2(element, "El nombre debe contener entre 6 y 255 letras, sin números.")
-        }
-        //error(element)
-        return false
-    }
-    return true
 }
 
 function validarCorreo() {
@@ -95,23 +78,6 @@ function validarClave() {
             error2(element, "La contraseña debe contener 6 dígitos como mínimo.")
         }
         //error(element)
-        return false
-    }
-
-    var elementc = document.getElementById("passwordc")
-    if (!elementc.checkValidity()) {
-        if (elementc.validity.valueMissing) {
-            error2(elementc, "Repite la contraseña")
-        }
-        if (elementc.validity.patternMismatch) {
-            error2(elementc, "La contraseña repetida debe contener 6 dígitos como mínimo.")
-        }
-        //error(element)
-        return false
-    }
-
-    if(element.value != elementc.value){
-        error2(element, "Las conatraseñas no coinciden")
         return false
     }
     return true
