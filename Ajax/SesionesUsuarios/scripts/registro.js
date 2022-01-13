@@ -17,7 +17,7 @@ function registrarusuario(){
     .then(data => {
         console.log(data)
         if(data.error == null){
-            console.log("USUARIO CREADO");
+            alert("Usuario creado correctamente")
         }else{
             error2(document.getElementById("nom"), data.error)
         }

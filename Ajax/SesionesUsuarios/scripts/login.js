@@ -6,7 +6,7 @@ function main(){
 
 function registrarusuario(){
     let usuario = creaUsuario()
-    fetch("https://userprofile.serverred.es/api/register", {
+    fetch("https://userprofile.serverred.es/api/login", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -17,23 +17,28 @@ function registrarusuario(){
     .then(data => {
         console.log(data)
         if(data.error == null){
-            console.log("USUARIO CREADO");
+            setToken(data.data.token);
         }else{
             error2(document.getElementById("email"), data.error)
         }
-        // window.location.href = "llistatLlibres.html"
+        window.location.href = "areaPersonal.html"
     })
     .catch(error => {
-        console.log(error)
+        error2(document.getElementById("email"), error)
     })
 }
 
 function creaUsuario(){
     let usuario = {
-        name: document.getElementById("email").value,
+        email: document.getElementById("email").value,
         password: document.getElementById("password").value,
     }
     return usuario
+}
+
+function setToken(token){
+    console.log(token);
+    localStorage.setItem("token", JSON.stringify(token))
 }
 
 /* ---------------------------------  VALIDACIÓN  ---------------------------------------------------- */
@@ -43,7 +48,6 @@ function validar(e) {
     esborrarError()
     if (validarCorreo() && validarClave()) {
 
-        console.log("Valido")
         registrarusuario()
         return true
 
