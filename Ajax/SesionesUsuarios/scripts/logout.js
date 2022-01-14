@@ -6,5 +6,5 @@ function main(){
 
 function salir(){
     localStorage.removeItem("token")
-    window.location.href = ""
+    window.location.href = " "
 }
