@@ -2,6 +2,8 @@ window.onload = main
 var token;
 
 function main(){
+    document.getElementById("enviar").addEventListener("click", validar, false)
+    document.getElementById("enviarAvatar").addEventListener("click", cambiaAvatar, false)
     comprobarToken()
     getDatosUsuario()
 }
@@ -28,9 +30,48 @@ function getDatosUsuario(){
     .then(response => response.json())
     .then(data => {
         console.log(data)
+        setNombre(data.data.user);
+        setImg(data.data.user)
     })
     .catch(error => {
         error2(document.getElementById("nom"), error)
+    })
+}
+
+function setNombre(user){
+    let nomEle = document.getElementById("nom")
+    nomEle.setAttribute("value", user.name)
+}
+
+function setImg(user) {
+
+    let avatarAP = document.getElementById("avatarAP");
+    let avatar = document.getElementById("avatar");
+
+    avatarAP.setAttribute("src", "https://userprofile.serverred.es/public/img/"+ user.avatar);
+    avatar.setAttribute("src", "https://userprofile.serverred.es/public/img/"+ user.avatar);
+}
+
+function cambiaAvatar(e) {
+    e.preventDefault()
+    const formData = new FormData()
+    const file = document.querySelector('input[type="file"]')
+
+    formData.append("avatar", file.files[0])
+    fetch(" https://userprofile.serverred.es/api/areapersonal/avatar",{
+        method: "PUT",
+        headers : {
+            "auth-token": token
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data =>{
+        console.log(data)
+        // window.location.reload()
+    })
+    .catch(error=>{
+        console.log(error)        
     })
 }
 
@@ -39,16 +80,60 @@ function getDatosUsuario(){
 function validar(e) {
     e.preventDefault()
     esborrarError()
-    if (validarNombre() && validarCorreo() && validarClave()) {
+    if (validarNombre() && validarClaveA() && validarClave()) {
 
-        console.log("Valido")
-        registrarusuario()
-        return true
-
+        if(comprovarContraseña()){
+            console.log("Valido")
+            return true
+        }else{
+            return false
+        }
     } else {
-        e.preventDefault()
         return false
     }
+}
+
+function comprovarContraseña(){
+
+    var claves = crearClaves()
+    console.log(claves);
+
+    fetch("https://userprofile.serverred.es/api/areapersonal", {
+        method: "PUT",
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept' : 'application/json',
+            "auth-token": token
+        },
+        body: JSON.stringify(claves)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if(data.error == null){
+           alert("Contraseña cambiada con éxito")
+        }else{
+            error2(document.getElementById("nom"), data.error)
+        }
+    })
+    .catch(error => {
+        error2(document.getElementById("nom"), error)
+    })
+}
+
+function crearClaves(){
+
+    let nombreEle = document.getElementById("nom").value
+    let passwdordaEle = document.getElementById("passworda").value
+    let passwordcEle = document.getElementById("passwordc").value
+
+    let claves = {
+        name: nombreEle,
+        password: passwdordaEle,
+        newPassword: passwordcEle
+    }
+
+    return claves
 }
 
 
@@ -79,6 +164,22 @@ function validarCorreo() {
         //error(element)
         return false
     }
+    return true
+}
+
+function validarClaveA() {
+    var element = document.getElementById("passworda")
+    if (!element.checkValidity()) {
+        if (element.validity.valueMissing) {
+            error2(element, "Introduce la contraseña actual")
+        }
+        if (element.validity.patternMismatch) {
+            error2(element, "La contraseña debe contener 6 dígitos como mínimo.")
+        }
+        //error(element)
+        return false
+    }
+
     return true
 }
 

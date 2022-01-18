@@ -1,7 +1,16 @@
 window.onload = main
 
 function main(){
+    comprobarToken()
     document.getElementById("enviar").addEventListener("click", validar, false)
+}
+
+function comprobarToken(){
+    let tokenAux = JSON.parse(localStorage.getItem("token"))
+    if(tokenAux){
+        alert("Ya has iniciado sesión")
+        window.location.href = "index.html"
+    }
 }
 
 function registrarusuario(){
@@ -18,10 +27,10 @@ function registrarusuario(){
         console.log(data)
         if(data.error == null){
             setToken(data.data.token);
+            window.location.href = "areaPersonal.html"
         }else{
             error2(document.getElementById("email"), data.error)
         }
-        window.location.href = "areaPersonal.html"
     })
     .catch(error => {
         error2(document.getElementById("email"), error)

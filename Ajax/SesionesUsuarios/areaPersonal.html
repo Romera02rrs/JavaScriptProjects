@@ -84,26 +84,25 @@
 
           <div class="form-group">
             <label for="nom">Nom</label>
-            <input type="text" class="form-control" id="nom" name="nom" placeholder="Introduir nom" pattern=".{8,255}"
-              required>
+            <input type="text" class="form-control" id="nom" name="nom" placeholder="Introduir nom" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{6,255}">
           </div>
 
           <div class="form-group">
             <label for="passworda">Contrasenya Actual</label>
             <input type="password" class="form-control" id="passworda" name="passworda"
-              placeholder="Introduir contrasenya actual" ">
+              placeholder="Introduir contrasenya actual" required pattern="^.{6,}$">
             </div>
   
             <div class=" form-group">
             <div class="row">
               <div class="col">
                 <label for="password">Nova Contrasenya</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya" required pattern="^.{6,}$">
               </div>
               <div class="col">
                 <label for="passwordc">Repetir contrasenya</label>
                 <input type="password" class="form-control" id="passwordc" name="passwordc"
-                  placeholder=" Repetir contrasenya">
+                  placeholder=" Repetir contrasenya" required pattern="^.{6,}$">
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 window.onload = main
+var token
 
 function main(){
-    document.getElementById("enviar").addEventListener("click", salir)
     comprobarToken()
 }
 
@@ -25,6 +25,7 @@ function getDatosUsuario(){
     .then(response => response.json())
     .then(data => {
         console.log(data)
+        setNombre(data.data.user);
         setImg(data.data.user)
     })
     .catch(error => {
@@ -32,13 +33,14 @@ function getDatosUsuario(){
     })
 }
 
+function setNombre(user){
+    let nomEle = document.getElementById("nom")
+    nomEle.replaceChildren("Bienvenido " + user.name)
+}
+
 function setImg(user) {
 
     let avatar = document.getElementById("avatar");
-    avatar.setAttribute("src", "https://userprofile.serverred.es/public/img/"+ user.avatar);
-}
 
-function salir(){
-    localStorage.removeItem("token")
-    window.location.href = " "
+    avatar.setAttribute("src", "https://userprofile.serverred.es/public/img/"+ user.avatar);
 }
