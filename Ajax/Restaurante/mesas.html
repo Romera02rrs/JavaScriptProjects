@@ -92,6 +92,7 @@
       </div>
     </nav>
   </header>
+  
   <div class="container">
     <h1>Mesas</h1>
     <button class=" btn btn-primary btn-lg my-3" id="newMesa"> Nueva Mesa</button></br>
@@ -109,7 +110,7 @@
         </div>
         <div class="col">
           <label for="comensales">Descripción</label>
-          <input type="text" class="form-control" id="descripcion" name="descripcion" pattern="[]">
+          <input type="text" class="form-control" id="descripcion" name="descripcion" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+">
           <button type="reset" id="cancelar" class="mt-2 btn btn-primary">Cancelar</button>
           <button type="submit" id="confirmar" class="mt-2 btn btn-primary">Confirmar</button>
         </div>

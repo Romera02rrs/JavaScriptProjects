@@ -117,6 +117,42 @@ function muestraMesas(resultado){
     })
 }
 
+function registrarMesa(){
+    let mesa = crearMesa()
+    console.log(mesa);
+    fetch("https://restaurante.serverred.es/api/mesa", {
+        method: "POST",
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept' : 'application/json',
+            "auth-token": token
+        },
+        body: JSON.stringify(mesa)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if(data.error == null){
+            alert("Mesa creada correctamente")
+        }else{
+            error2(document.getElementById("numero"), data.error)
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+function crearMesa(){
+    let mesa = {
+        comensales: document.getElementById("comensales").value,
+        descripcion: document.getElementById("descripcion").value,
+        numero: document.getElementById("numero").value
+    }
+    return mesa
+}
+
+/* ---------------------------------  VALIDACIÓN  ---------------------------------------------------- */
 
 function nuevaMesa(){
     document.getElementById("formulario").className = ""
@@ -126,10 +162,10 @@ function nuevaMesa(){
     function validar(e) {
         e.preventDefault()
         esborrarError()
-        if (validarNumero()) {
+        if (validarNumero() && validarComensales() && validarDescripcion()) {
     
             console.log("Valido")
-            registrarusuario()
+            registrarMesa();
             return true
     
         } else {
@@ -144,8 +180,41 @@ function nuevaMesa(){
             if (element.validity.valueMissing) {
                 error2(element, "Introduce un numero")
             }
+            if (element.validity.rangeOverflow) {
+                error2(element, "Máximo 100.")
+            }
+            if (element.validity.rangeUnderflow) {
+                error2(element, "Mínimo 1.")
+            }
+            //error(element)
+            return false
+        }
+        return true
+    }
+
+    function validarComensales(){
+        var element = document.getElementById("comensales")
+        if (!element.checkValidity()) {
+            if (element.validity.valueMissing) {
+                error2(element, "Introduce un numero")
+            }
+            if (element.validity.rangeOverflow) {
+                error2(element, "Máximo 50.")
+            }
+            if (element.validity.rangeUnderflow) {
+                error2(element, "Mínimo 1.")
+            }
+            //error(element)
+            return false
+        }
+        return true
+    }
+
+    function validarDescripcion(){
+        var element = document.getElementById("descripcion")
+        if (!element.checkValidity()) {
             if (element.validity.patternMismatch) {
-                error2(element, "El nombre debe contener entre 6 y 255 letras, sin números.")
+                error2(element, "La descripción debe contener solo letras.")
             }
             //error(element)
             return false
@@ -168,5 +237,6 @@ function nuevaMesa(){
         }
         document.getElementById("confirmar").className = "mt-2 btn btn-primary"
         document.getElementById("cancelar").className = "mt-2 btn btn-primary"
+        document.getElementById("missatgeError").innerHTML = ""
     }
 }

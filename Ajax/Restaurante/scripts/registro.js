@@ -165,4 +165,5 @@ function esborrarError() {
         formulari.elements[i].className = "form-control"
     }
     document.getElementById("enviar").className = "mt-2 btn btn-primary"
+    document.getElementById("missatgeError").innerHTML = ""
 }
