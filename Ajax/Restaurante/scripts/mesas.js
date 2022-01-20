@@ -5,8 +5,8 @@ var datosMesas
 function main(){
     comprobarToken()
     document.getElementById("newMesa").addEventListener("click", nuevaMesa)
-    obtenerDatosMesas()
-}
+    borrarMesas()
+    obtenerDatosMesas()}
 
 function comprobarToken(){
     let tokenAux = JSON.parse(localStorage.getItem("token"))
@@ -43,6 +43,14 @@ function setImg(user) {
     avatar.setAttribute("src", "https://userprofile.serverred.es/public/img/"+ user.avatar);
 }
 
+function borrarMesas(){
+    var filas = document.getElementById("files");
+
+    do{
+        filas.lastChild.parentNode.removeChild(filas.lastChild);
+    }while(filas.lastChild != null);
+}
+
 function obtenerDatosMesas(){
     fetch("https://restaurante.serverred.es/api/mesas", {
         method: "GET",
@@ -64,9 +72,7 @@ function obtenerDatosMesas(){
 }
 
 function muestraMesas(resultado){
-
     var filas = document.getElementById("files");
-
     resultado.forEach(mesa => {
 
         var fila = document.createElement("tr");
@@ -75,7 +81,7 @@ function muestraMesas(resultado){
         var esborrarBtb = document.createElement("button");
         esborrarBtb.setAttribute("class", "btn btn-primary btn-lg my-3");
         esborrarBtb.setAttribute("id", mesa._id);
-        // esborrarBtb.addEventListener("click", borrar);
+        esborrarBtb.addEventListener("click", borrar);
         esborrarBtb.innerHTML = "Esborrar";
         columna1.appendChild(esborrarBtb);
         fila.appendChild(columna1);
@@ -84,7 +90,7 @@ function muestraMesas(resultado){
         var ModificarBtn = document.createElement("button");
         ModificarBtn.setAttribute("class", "btn btn-primary btn-lg my-3");
         ModificarBtn.setAttribute("id", mesa._id);
-        // ModificarBtn.addEventListener("click", modificarLibro);
+        ModificarBtn.addEventListener("click", modificarMesa);
         ModificarBtn.innerHTML = "Modificar";
         columna2.appendChild(ModificarBtn);
         fila.appendChild(columna2);
@@ -119,28 +125,54 @@ function muestraMesas(resultado){
 
 function registrarMesa(){
     let mesa = crearMesa()
-    console.log(mesa);
-    fetch("https://restaurante.serverred.es/api/mesa", {
+    let id = document.getElementById("_id").value
+    if(id){
+        fetch("https://restaurante.serverred.es/api/mesas/" + id, {
+        method: "PUT",
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept' : 'application/json',
+            "auth-token": token
+        },
+            body: JSON.stringify(mesa)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if(data.error == null){
+                // alert("Mesa modificada correctamente") 
+                main()
+            }else{
+                error2(document.getElementById("numero"), data.error)
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }else{
+        fetch("https://restaurante.serverred.es/api/mesas/", {
         method: "POST",
         headers : {
             'Content-Type': 'application/json',
             'Accept' : 'application/json',
             "auth-token": token
         },
-        body: JSON.stringify(mesa)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        if(data.error == null){
-            alert("Mesa creada correctamente")
-        }else{
-            error2(document.getElementById("numero"), data.error)
-        }
-    })
-    .catch(error => {
-        console.log(error);
-    })
+            body: JSON.stringify(mesa)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if(data.error == null){
+                // alert("Mesa creada correctamente")
+                main()
+            }else{
+                error2(document.getElementById("numero"), data.error)
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    } 
 }
 
 function crearMesa(){
@@ -152,91 +184,128 @@ function crearMesa(){
     return mesa
 }
 
+function borrar(){
+    fetch("https://restaurante.serverred.es/api/mesas/" + this.id, {
+        method: "DELETE",
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept' : 'application/json',
+            "auth-token": token
+        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if(data.error == null){
+                // alert("Mesa borrada correctamente")
+                main();
+            }else{
+                error2(document.getElementById("numero"), data.error)
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+function modificarMesa(){
+    document.getElementById("formulario").className = ""
+    document.getElementById("cancelar").addEventListener("click", ()=>{document.getElementById("formulario").className = "visually-hidden"})
+    document.getElementById("confirmar").addEventListener("click", validar, false)
+    datosMesas.forEach(mesa => {
+        if (this.id == mesa._id){
+            document.getElementById("numero").setAttribute("value", mesa.numero)
+            document.getElementById("comensales").setAttribute("value", mesa.comensales)
+            document.getElementById("descripcion").setAttribute("value", mesa.descripcion)
+            document.getElementById("_id").setAttribute("value", mesa._id)
+        }
+    });
+}
+
 /* ---------------------------------  VALIDACIÓN  ---------------------------------------------------- */
 
 function nuevaMesa(){
     document.getElementById("formulario").className = ""
     document.getElementById("cancelar").addEventListener("click", ()=>{document.getElementById("formulario").className = "visually-hidden"})
     document.getElementById("confirmar").addEventListener("click", validar, false)
+    var formulari = document.forms[0]
+    for (var i = 0; i < formulari.elements.length; i++) {
+        formulari.elements[i].setAttribute("value", "")
+    }
+}
 
-    function validar(e) {
+function validar(e) {
+    e.preventDefault()
+    esborrarError()
+    if (validarNumero() && validarComensales() && validarDescripcion()) {
+        registrarMesa();
+        return true
+    } else {
         e.preventDefault()
-        esborrarError()
-        if (validarNumero() && validarComensales() && validarDescripcion()) {
-    
-            console.log("Valido")
-            registrarMesa();
-            return true
-    
-        } else {
-            e.preventDefault()
-            return false
-        }
+        return false
     }
+}
 
-    function validarNumero() {
-        var element = document.getElementById("numero")
-        if (!element.checkValidity()) {
-            if (element.validity.valueMissing) {
-                error2(element, "Introduce un numero")
-            }
-            if (element.validity.rangeOverflow) {
-                error2(element, "Máximo 100.")
-            }
-            if (element.validity.rangeUnderflow) {
-                error2(element, "Mínimo 1.")
-            }
-            //error(element)
-            return false
+function validarNumero() {
+    var element = document.getElementById("numero")
+    if (!element.checkValidity()) {
+        if (element.validity.valueMissing) {
+            error2(element, "Introduce un numero")
         }
-        return true
-    }
-
-    function validarComensales(){
-        var element = document.getElementById("comensales")
-        if (!element.checkValidity()) {
-            if (element.validity.valueMissing) {
-                error2(element, "Introduce un numero")
-            }
-            if (element.validity.rangeOverflow) {
-                error2(element, "Máximo 50.")
-            }
-            if (element.validity.rangeUnderflow) {
-                error2(element, "Mínimo 1.")
-            }
-            //error(element)
-            return false
+        if (element.validity.rangeOverflow) {
+            error2(element, "Máximo 100.")
         }
-        return true
-    }
-
-    function validarDescripcion(){
-        var element = document.getElementById("descripcion")
-        if (!element.checkValidity()) {
-            if (element.validity.patternMismatch) {
-                error2(element, "La descripción debe contener solo letras.")
-            }
-            //error(element)
-            return false
+        if (element.validity.rangeUnderflow) {
+            error2(element, "Mínimo 1.")
         }
-        return true
+        //error(element)
+        return false
     }
+    return true
+}
 
-
-    function error2(element, missatge) {
-        document.getElementById("missatgeError").innerHTML = missatge
-        element.className = "form-control error"
-        element.focus()
-    }
-    
-    
-    function esborrarError() {
-        var formulari = document.forms[0]
-        for (var i = 0; i < formulari.elements.length; i++) {
-            formulari.elements[i].className = "form-control"
+function validarComensales(){
+    var element = document.getElementById("comensales")
+    if (!element.checkValidity()) {
+        if (element.validity.valueMissing) {
+            error2(element, "Introduce un numero")
         }
-        document.getElementById("confirmar").className = "mt-2 btn btn-primary"
-        document.getElementById("cancelar").className = "mt-2 btn btn-primary"
-        document.getElementById("missatgeError").innerHTML = ""
+        if (element.validity.rangeOverflow) {
+            error2(element, "Máximo 50.")
+        }
+        if (element.validity.rangeUnderflow) {
+            error2(element, "Mínimo 1.")
+        }
+        //error(element)
+        return false
     }
+    return true
+}
+
+function validarDescripcion(){
+    var element = document.getElementById("descripcion")
+    if (!element.checkValidity()) {
+        if (element.validity.patternMismatch) {
+            error2(element, "La descripción debe contener solo letras.")
+        }
+        //error(element)
+        return false
+    }
+    return true
+}
+
+function error2(element, missatge) {
+    document.getElementById("missatgeError").innerHTML = missatge
+    element.className = "form-control error"
+    element.focus()
+}
+
+function esborrarError() {
+    var formulari = document.forms[0]
+    for (var i = 0; i < formulari.elements.length; i++) {
+        formulari.elements[i].className = "form-control"
+    }
+    document.getElementById("confirmar").className = "mt-2 btn btn-primary"
+    document.getElementById("cancelar").className = "mt-2 btn btn-primary"
+    document.getElementById("missatgeError").innerHTML = ""
 }
