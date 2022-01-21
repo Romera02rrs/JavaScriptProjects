@@ -18,6 +18,8 @@
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <script src="scripts/platos.js"></script>
+
   <title>App Restaurante</title>
 </head>
 
@@ -64,7 +66,7 @@
           <ul class="navbar-nav mb-2 mb-lg-0">
             <div class="d-flex">
               <a id="areaPersonal" class="navbar-text nav-link" href="#">
-                <img id="avatar" src="/img/profile-pic.png" alt="" style="width: 2em"
+                <img id="avatar" src="img/profile-pic.png" alt="" style="width: 2em"
                   class="img-responsive user-avatar-md rounded-circle">
               </a>
               <li class="nav-item dropdown">
@@ -99,12 +101,12 @@
       <div class="row">
         <div class="col">
           <label for="nombre">Nombre</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" pattern="^.{4,60}$" required>
+          <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[\w\s]{4,60}">
           <input type="hidden" id="_id">
         </div>
         <div class="col">
           <label for="orden">Orden</label>
-          <select class="form-control" id="orden"" name=" orden">
+          <select class="form-control" id="orden" name=" orden">
             <option value="Selecciona Orden" selected>Selecciona Orden
             </option>
             <option value="Primero">Primero
@@ -117,7 +119,7 @@
         </div>
         <div class="col">
           <label for="precio">Precio</label>
-          <input type="number" class="form-control" id="precio">
+          <input type="number" class="form-control" id="precio" required min="0">
           <button type="submit" id="cancelar" class="mt-2 btn btn-primary">Cancelar</button>
           <button type="submit" id="confirmar" class="mt-2 btn btn-primary">Confirmar</button>
         </div>
