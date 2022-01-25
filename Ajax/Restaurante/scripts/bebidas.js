@@ -6,7 +6,8 @@ function main(){
     comprobarToken()
     document.getElementById("newBebida").addEventListener("click", nuevabebida)
     borrarBebidas()
-    obtenerDatosBebidas()}
+    obtenerDatosBebidas()
+}
 
 function comprobarToken(){
     let tokenAux = JSON.parse(localStorage.getItem("token"))

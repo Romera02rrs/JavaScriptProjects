@@ -168,16 +168,33 @@ function muestraComandas(){
 }
 
 function masBebidas(comanda){
+    
+    comanda = cambiarComanda(comanda)
     localStorage.setItem("comanda", JSON.stringify(comanda))
     window.location.href = "comandasAddBebidas.html"
 }
 
 function masPlatos(comanda){
+
+    comanda = cambiarComanda(comanda)
     localStorage.setItem("comanda", JSON.stringify(comanda))
     window.location.href = "comandasAddPlatos.html"
 }
 
-function obtenerMesa(id) {
+function cambiarComanda(comanda){
+
+    let mesa = obtenerMesa(comanda.mesa)
+    let camarero = obtenerCamarero(comanda.user)
+    let hora = obtenerHora(comanda.fechaEntrada)
+
+    comanda.mesa = mesa
+    comanda.user = camarero
+    comanda.fechaEntrada = hora
+
+    return comanda
+}
+
+function obtenerMesa(id){
     for (const mesa of datosApis["mesas"]) {
         if(mesa._id === id){
             return mesa.descripcion
