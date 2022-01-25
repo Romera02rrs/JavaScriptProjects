@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+  </script>
+  <!-- Load an icon library -->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+  <title>App Restaurante</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Restaurante</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul id="anclaMenu" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-hamburger"></i>Cocina</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-glass-martini"></i>Barra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-fw fa-utensils"></i>Sala</a>
+            </li>
+            <li class="nav-item dropdown">
+                    
+              <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="far fa-folder-open"></i>Gestión</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="mesas.html">Mesas</a>
+                <a class="dropdown-item" href="bebidas.html">Bebidas</a>
+                <a class="dropdown-item" href="platos.html">Platos</a>
+                <a class="dropdown-item" href="comandas.html">Comandas</a>
+              </ul>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+          </ul>
+
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <div class="d-flex">
+              <a id="areaPersonal" class="navbar-text nav-link" href="#">
+                <img id="avatar" src="/img/profile-pic.png" alt="" style="width: 2em"
+                  class="img-responsive user-avatar-md rounded-circle">
+              </a>
+              <li class="nav-item dropdown">
+                <a id="user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Àrea personal
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="areaPersonal.html"><i class="fa fa-fw fa-cog"></i>Perfil
+                      Usuario</a></li>
+                  <li><a class="dropdown-item" href="register.html"><i class="fa fa-fw fa-user-plus"></i>Registro</a>
+                  </li>
+                  <li><a class="dropdown-item" href="login.html"><i class="fa fa-fw fa-user"></i>Login</a></li>
+                  <li><a class="dropdown-item" href="logout.html"><i class="fa fa-fw fa-power-off "></i>Logout</a></li>
+                </ul>
+              </li>
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Nueva Comanda</h1>
+
+    <h4 class="text-danger" id="missatgeError"></h4>
+
+    <form id="formulario">
+      <div class="row">
+        <div class="col">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" >
+          <input type="hidden" id="_id">
+        </div>
+        <div class="col">
+          <label for="comensales">Comensales</label>
+          <input type="number" class="form-control" id="comensales" name="comensales" >
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Mesas</h3>
+        </div>
+      </div>
+
+      <div class="row" id="mesas">
+        <input type="hidden" id="mesa">
+        <!--<div class="col">
+              <input type="button" id="" class="mt-2 btn btn-primary p-3" value="1">
+            </div> -->
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <p id="datosMesa"></p>
+        </div>
+      </div>
+     
+
+    
+
+
+
+    <div class="container">
+      <h1>Bebidas</h1>
+      <div class="row">
+        <div class="col">
+         <table class="table table-striped table-hover">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Borrar</th>
+                <th scope="col">Bebida</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+          <tbody id="comBebidas">
+          </tbody> 
+         </table>
+
+
+
+        </div>
+      </div>
+      <div class="row" id="bebidas">
+        <!--<div class="col">
+              <input type="button" id="" class="mt-2 btn btn-info p-3" value="CocaCola">
+            </div>-->
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Platos</h1>
+      <div class="row">
+        <div class="col">
+         <table class="table table-striped table-hover">
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Borrar</th>
+                <th scope="col">Plato</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+          <tbody id="comPlatos">
+          </tbody> 
+          </table>
+
+
+
+        </div>
+      </div>
+      <div class="row">
+        <h5>Primeros</h5>
+      </div>
+      <div class="row" id="platosPrimero">
+        <!--<div class="col">
+              <input type="button" id="" class="mt-2 btn btn-info p-3" value="CocaCola">
+            </div>-->
+      </div>
+      <div class="row">
+        <h5>Segundos</h5>
+      </div>
+      <div class="row" id="platosSegundo">
+        <!--<div class="col">
+              <input type="button" id="" class="mt-2 btn btn-info p-3" value="CocaCola">
+            </div>-->
+      </div>
+      <div class="row">
+        <h5>Postres</h5>
+      </div>
+      <div class="row" id="platosPostre">
+        <!--<div class="col">
+              <input type="button" id="" class="mt-2 btn btn-warning p-3" value="CocaCola">
+            </div>-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h3>Notas</h3>
+        <textarea class="form-control" id="notas" rows="2" name="notas"></textarea>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col">
+      <button type="submit" id="confirmar" class="mt-2 btn btn-primary p-3">Confirmar</button>
+    </div>
+  </div>
+
+  </form>
+    <footer class="mt-5">
+      <p class="mx-auto">DWEC - Restaurante 2022 - David Crespo </p>
+    </footer>
+  </div>
+
+</body>
+
+</html>
