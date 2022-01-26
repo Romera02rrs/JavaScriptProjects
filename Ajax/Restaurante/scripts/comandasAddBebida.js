@@ -7,6 +7,7 @@ function main(){
     comprobarToken()
     obtenerComanda()
     obtenerDatosBebidas()
+    document.getElementById("confirmar").addEventListener("click", actualizarComanda, false)
 }
 
 function comprobarToken(){
@@ -77,7 +78,7 @@ function obtenerDatosBebidas(){
 }
 
 function establecerValores(){
-    console.log(comanda.bebidas);
+    console.log(comanda);
     console.log(datosBebidas);
     document.getElementById("nombre").appendChild(document.createTextNode(comanda.nombre))
     document.getElementById("comensales").appendChild(document.createTextNode(comanda.comensales))
@@ -106,17 +107,15 @@ function establecerValores(){
 
 function masBebidas(){
 
-    for (const bebida of comanda.bebidas) {
+    for (const bebida of comanda["bebidas"]) {
         if(this.id === bebida._id){
-            console.log(true);
             bebida.cantidad ++
             borrarBebidas()
             muestraBebidas()
             return
         }
     }
-    console.log(crearBebidaNueva(this.id))
-    comanda.bebidas.push(crearBebidaNueva(this.id))
+    comanda["bebidas"].push(crearBebidaNueva(this.id))
     borrarBebidas()
     muestraBebidas()
 }
@@ -136,8 +135,9 @@ function crearBebidaNueva(id){
 }
 
 function muestraBebidas(){
+    console.log(comanda);
     var filas = document.getElementById("comBebidas");
-    comanda.bebidas.forEach(bebida => {
+    comanda["bebidas"].forEach(bebida => {
 
         var fila = document.createElement("tr");
 
@@ -171,5 +171,44 @@ function muestraBebidas(){
 }
 
 function borrar(){
+    var index = -1
+    for (const bebida of comanda["bebidas"]) {
+        index ++
+        if(bebida._id === this.id){
+            comanda["bebidas"].splice(index, 1)
+        }
+    }
+    borrarBebidas()
+    muestraBebidas()
+}
 
+function actualizarComanda(e){
+    e.preventDefault()
+
+    let enviar ={
+        bebidas: comanda.bebidas,
+        notas: document.getElementById("notas").value
+    }
+    console.log(comanda);
+    fetch("https://restaurante.serverred.es/api/comandas/bebidas/" + comanda._id, {
+        method: "PUT",
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept' : 'application/json',
+            "auth-token": token
+        },
+        body: JSON.stringify(enviar)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if(data.error == null){
+            window.location.href = "comandas.html"
+        }else{
+            console.log(data);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    })
 }
