@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { version } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let techonologyData = ['React', 'Vue', 'Angular']
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <App title='My title' version={1} tech={techonologyData} />
   </React.StrictMode>,
   document.getElementById('root')
 );
