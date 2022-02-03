@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
+import PropTypes from 'prop-types'; // ES6
 
 // class App extends React.Component {
 //   render(){
@@ -39,25 +40,49 @@ import './App.css';
 // }
 
 class App extends React.Component {
-  render(){
-    let h1class = {
-      textAlign: 'center',
-      color: 'red',
-      fontWeight: 'bold'
-    }
 
-    let h2class = {
-      textAlign :  'center',
-      color: 'darkred'
-    }
-
-    return (
-      <div>
-        <h1 style={h1class}>Styled component</h1>
-        <h2 style={h2class}>Second styled component</h2>
-      </div>
-    )
+  static defaultProps = {
+    title: 'Default title',
+    version: 0
   }
+
+  render(){
+    const title = this.props.title; 
+    const tech = this.props.tech;
+    const version = this.props.version; 
+    return(
+      <div>
+        <h1>{title}</h1>
+        <h2>{tech[0]}</h2>
+        <h3>{version}</h3>
+      </div>
+  )
+  }
+
+  // render(){
+  //   let h1class = {
+  //     textAlign: 'center',
+  //     color: 'red',
+  //     fontWeight: 'bold'
+  //   }
+
+  //   let h2class = {
+  //     textAlign :  'center',
+  //     color: 'darkred'
+  //   }
+
+  //   return (
+  //     <div>
+  //       <h1 style={h1class}>Styled component</h1>
+  //       <h2 style={h2class}>Second styled component</h2>
+  //     </div>
+  //   )
+  // }
+}
+
+App.propTypes = {
+  title: this.propTypes.string.isRequired,
+  version: this.propTypes.number.isRequired
 }
 
 export default App;
