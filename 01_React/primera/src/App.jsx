@@ -3,61 +3,73 @@ import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types'; // ES6
 
-// class App extends React.Component {
-//   render(){
-//     return(
-//       <div>
-//           <h1>Hola</h1>
-//       </div>
-//     )
-//   }
-// }
-
-// class App extends React.Component {
-//   arrowHandleClick = (e) => {
-//     e.preventDefault()
-//     alert("The first link was clicked")
-//   }
-//   handleClick(e) {
-//     e.preventDefault()
-//     alert("The second link was clicked")
-//   }
-//   render(){
-//     return (
-//       <div className='m-5'>
-//         <button className="btn btn-primary m-2" onClick={() => alert("Its works")}>
-//           Click on this button
-//         </button>
-//         <a href="#" className='m-2' onClick={this.arrowHandleClick}>
-//           Click first link
-//         </a>
-//         <a href="#" className='m-2' onClick={this.handleClick}>
-//           Click second link
-//         </a>
-//       </div>
-//     )
-//   }
-// }
-
-class App extends React.Component {
-
-  static defaultProps = {
-    title: 'Default title',
-    version: 0
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: 'Default',
+      time: new Date().tolocaleDateString(),
+      number: 0,
+      numbers: []
+    }
   }
+}
 
-  render(){
-    const title = this.props.title; 
-    const tech = this.props.tech;
-    const version = this.props.version; 
-    return(
-      <div>
-        <h1>{title}</h1>
-        <h2>{tech[0]}</h2>
-        <h3>{version}</h3>
-      </div>
-  )
-  }
+  // class App extends React.Component {
+  //   render(){
+  //     return(
+  //       <div>
+  //           <h1>Hola</h1>
+  //       </div>
+  //     )
+  //   }
+  // }
+
+  // class App extends React.Component {
+  //   arrowHandleClick = (e) => {
+  //     e.preventDefault()
+  //     alert("The first link was clicked")
+  //   }
+  //   handleClick(e) {
+  //     e.preventDefault()
+  //     alert("The second link was clicked")
+  //   }
+  //   render(){
+  //     return (
+  //       <div className='m-5'>
+  //         <button className="btn btn-primary m-2" onClick={() => alert("Its works")}>
+  //           Click on this button
+  //         </button>
+  //         <a href="#" className='m-2' onClick={this.arrowHandleClick}>
+  //           Click first link
+  //         </a>
+  //         <a href="#" className='m-2' onClick={this.handleClick}>
+  //           Click second link
+  //         </a>
+  //       </div>
+  //     )
+  //   }
+  // }
+
+  // class App extends React.Component {
+
+  //   static defaultProps = {
+  //     title: 'Default title',
+  //     version: 0
+  //   }
+
+  //   render(){
+  //     const title = this.props.title; 
+  //     const tech = this.props.tech;
+  //     const version = this.props.version; 
+  //     return(
+  //       <div>
+  //         <h1>{title}</h1>
+  //         <h2>{tech[0]}</h2>
+  //         <h3>{version}</h3>
+  //       </div>
+  //   )
+  //   }
 
   // render(){
   //   let h1class = {
@@ -80,9 +92,9 @@ class App extends React.Component {
   // }
 }
 
-App.propTypes = {
-  title: this.propTypes.string.isRequired,
-  version: this.propTypes.number.isRequired
-}
+// App.propTypes = {
+//   title: this.propTypes.string.isRequired,
+//   version: this.propTypes.number.isRequired
+// }
 
 export default App;

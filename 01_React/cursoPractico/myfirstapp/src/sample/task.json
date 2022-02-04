@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "title": "Primera tarea",
+        "description": "Esta es la primera tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 1,
+        "title": "Segunda tarea",
+        "description": "Esta es la segunda tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 2,
+        "title": "Tercera tarea",
+        "description": "Esta es la tercera tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 3,
+        "title": "Cuarta tarea",
+        "description": "Esta es la cuarta tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 4,
+        "title": "Quinta tarea",
+        "description": "Esta es la quinta tarea pendiente",
+        "done": false
+    }
+]
