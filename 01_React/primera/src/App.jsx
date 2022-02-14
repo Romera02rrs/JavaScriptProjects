@@ -1,17 +1,19 @@
 import logo from './logo.svg';
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import PropTypes from 'prop-types'; // ES6
+import Conversor from './conversors';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: 'Default',
-      time: new Date().tolocaleDateString(),
-      number: 0,
-      numbers: []
-    }
+    this.state = { canvi: 1.20 }
+  }
+
+  render() {
+    return(
+      <Conversor canvi={this.state.canvi}/>
+    )
   }
 }
 
@@ -90,7 +92,7 @@ class App extends Component {
   //     </div>
   //   )
   // }
-}
+// }
 
 // App.propTypes = {
 //   title: this.propTypes.string.isRequired,

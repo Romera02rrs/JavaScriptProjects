@@ -15,7 +15,7 @@
         "id": 2,
         "title": "Tercera tarea",
         "description": "Esta es la tercera tarea pendiente",
-        "done": false
+        "done": true
     },
     {
         "id": 3,
@@ -27,6 +27,36 @@
         "id": 4,
         "title": "Quinta tarea",
         "description": "Esta es la quinta tarea pendiente",
+        "done": true
+    },
+    {
+        "id": 5,
+        "title": "Sexta tarea",
+        "description": "Esta es la sexta tarea pendiente",
         "done": false
+    },
+    {
+        "id": 6,
+        "title": "Septima tarea",
+        "description": "Esta es la Septima tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 7,
+        "title": "Octava tarea",
+        "description": "Esta es la Octava tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 8,
+        "title": "Novena tarea",
+        "description": "Esta es la Novena tarea pendiente",
+        "done": false
+    },
+    {
+        "id": 9,
+        "title": "Decima tarea",
+        "description": "Esta es la Decima tarea pendiente",
+        "done": true
     }
 ]
