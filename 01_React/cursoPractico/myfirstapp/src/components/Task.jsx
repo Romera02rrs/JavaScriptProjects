@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Estado from "./estado"
+import Estado from "./Estado"
 
 class Task extends Component {
 
@@ -16,7 +16,7 @@ class Task extends Component {
 
         return (
             <div className="col-12 col-sm-6 col-md-3 col-lg-2 p-2" >
-                <div className={this.establecerEstilos()} key={tarea.id} style={{ height: '100%' }}>
+                <div className={this.establecerEstilos() + " overflow-hidden"} key={tarea.id} style={{ height: '100%' }}>
                     <div className="card-body">
                         <h5 className="card-title">{tarea.title}</h5>
                         <h6 className="card-subtitle mb-2">id - {tarea.id}</h6>

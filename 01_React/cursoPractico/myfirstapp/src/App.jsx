@@ -2,7 +2,10 @@ import './App.css';
 import React, { Component } from 'react';
 
 import tasks from './sample/task.json'
-import Tasks from './components/tasks'
+
+// Components
+import Tasks from './components/Tasks'
+import TaskForm from './components/TaskForm'
 
 class App extends Component {
 
@@ -12,7 +15,10 @@ class App extends Component {
 
   render() {
     return (
-      <Tasks tareas={this.state.tareas} />
+      <>
+        <Tasks tareas={this.state.tareas} />
+        <TaskForm />
+      </>
     )
   }
 }
