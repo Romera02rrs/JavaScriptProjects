@@ -3,8 +3,6 @@ import Estado from "./Estado"
 
 class Task extends Component {
 
-  
-
     establecerEstilos() {
 
         return this.props.tarea.done ? "card bg-success" : "card bg-warning"
