@@ -17,17 +17,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <script src="scripts/login.js"></script>
-
-  <title>Menu APP</title>
+  <script src="scripts/registro.js"></script>
+  <title>App Noticias
+  </title>
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Restaurante</a>
+        <a class="navbar-brand" href="#">El periódico digital</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -35,27 +34,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul id="anclaMenu" class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
+              <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-hamburger"></i>Cocina</a>
+              <a class="nav-link" href="./nuevoArticulo.html">Nuevo Artículo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-glass-martini"></i>Barra</a>
+              <a class="nav-link" href="./Categoria.html">Categorias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-fw fa-utensils"></i>Sala</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="far fa-folder-open"></i>Gestión</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="mesas.html">Mesas</a>
-                <a class="dropdown-item" href="bebidas.html">Bebidas</a>
-                <a class="dropdown-item" href="platos.html">Platos</a>
-                <a class="dropdown-item" href="comandas.html">Comandas</a>
-              </ul>
+              <a class="nav-link" href="./acercade.html">Acerca De</a>
             </li>
 
             <li>
@@ -72,10 +60,8 @@
               <li class="nav-item dropdown">
                 <a id="user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  Àrea personal
+                  Area personal
                 </a>
-
-
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="areaPersonal.html"><i class="fa fa-fw fa-cog"></i>Perfil
                       Usuario</a></li>
@@ -92,11 +78,15 @@
       </div>
     </nav>
   </header>
-
   <div class="container">
-    <h1>Login</h1>
+    <h1>Registrar nou usuari</h1>
     <h4 class="text-danger" id="missatgeError"></h4>
     <form>
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" id="nom" name="nom" placeholder="Introduir nom" required
+          pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{6,255}">
+      </div>
       <div class="form-group">
         <label for="email">Correu electrònic</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Introduir email" required
@@ -107,19 +97,24 @@
           <div class="col">
             <label for="password">Contrasenya</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya" required
-              required pattern="^.{6,}$">
+              pattern="^.{6,}$">
+          </div>
+          <div class="col">
+            <label for="passwordc">Repetir contrasenya</label>
+            <input type="password" class="form-control" id="passwordc" name="passwordc"
+              placeholder=" Repetir contrasenya" required pattern="^.{6,}$">
           </div>
         </div>
 
-        <button type="submit" id="enviar" class="mt-2 btn btn-primary">Accedir</button>
+        <button type="submit" id="enviar" class="mt-2 btn btn-primary">Registrar</button>
     </form>
 
 
     <footer class="mt-5">
-      <p class="mx-auto">DWEC - Restaurante 2022 - David Crespo </p>
+      <p class="mx-auto">DWEC - El periódico Digital 2022 - David Crespo </p>
     </footer>
 
-
+  </div>
 </body>
 
 </html>
