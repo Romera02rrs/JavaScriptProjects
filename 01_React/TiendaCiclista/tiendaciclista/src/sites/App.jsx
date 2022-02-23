@@ -1,28 +1,28 @@
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { Routes, Route } from 'react-router-dom'
+import React from 'react'
+
+import Error404 from './Error404'
+import Registrarse from '../sites/Registrarse'
+import Login from '../sites/Login'
+import Home from './Home'
+import Logout from '../sites/Logout'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import Registrarse from '../sites/Registrarse'
-import Login from '../sites/Login'
-
-
 function App() {
   return (
-    <>
-      <Router>
-        <Route exact path="/" render={() => {
-          return (
-            <>
-              <Header></Header>
-              <Footer></Footer>
-            </>
-          )
-        }} />
-        <Route path="/registrarse" component={Registrarse} />
-        <Route path="/login" component={Login} />
-      </Router>
-    </>
+    <React.Fragment>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path="/registrarse" element={<Registrarse />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path='*' element={<Error404 />} />
+      </Routes>
+      <Footer />
+    </React.Fragment>
   )
 }
 

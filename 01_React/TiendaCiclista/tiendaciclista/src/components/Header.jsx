@@ -17,10 +17,10 @@ const Header = () => {
                             <Nav.Link href="#2">Productos</Nav.Link>
                             <Nav.Link href="#3">Pedidos</Nav.Link>
                             <NavDropdown title="Area Personal" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#">Area Personal</NavDropdown.Item>
+                                <NavDropdown.Item href="#4">Area Personal</NavDropdown.Item>
                                 <NavDropdown.Item href="/registrarse">Registrarse</NavDropdown.Item>
                                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Logout</NavDropdown.Item>
+                                <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
