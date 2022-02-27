@@ -1,4 +1,5 @@
 import { Formik, Form, Field } from "formik"
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
 
 const RegisterSchema = Yup.object().shape({
@@ -9,14 +10,17 @@ const RegisterSchema = Yup.object().shape({
 })
 
 const RegForm = () => {
+
+    let redireccionar = useNavigate()
+
     return (
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
-                    <Formik initialValues={{ name: "", email: "", password: ""}} 
+                    <Formik initialValues={{ name: "", email: "", password: "", passwordConfirmation: ""}} 
                             validationSchema={RegisterSchema}
                             onSubmit={values => {
-                                registrar(values)
+                                registrar(values, redireccionar)
                             }}>
                         {({ errors, touched }) => (
                             <Form>
@@ -60,7 +64,7 @@ const RegForm = () => {
     )
 }
 
-function registrar(values){
+function registrar(values, redireccionar){
 
     const usuario = {
         name : values.name,
@@ -80,7 +84,7 @@ function registrar(values){
         console.log(data)
         if(data.error == null){
             alert("Correcto")
-            // window.location.href = "llistatLlibres.html"
+            redireccionar("/login")
         }else{
             alert("ERROR")
             //error2(document.getElementById("nom"), data.error)

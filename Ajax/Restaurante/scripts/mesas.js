@@ -6,7 +6,8 @@ function main(){
     comprobarToken()
     document.getElementById("newMesa").addEventListener("click", nuevaMesa)
     borrarMesas()
-    obtenerDatosMesas()}
+    obtenerDatosMesas()
+}
 
 function comprobarToken(){
     let tokenAux = JSON.parse(localStorage.getItem("token"))

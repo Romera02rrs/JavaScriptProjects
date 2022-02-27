@@ -14,7 +14,7 @@ const Header = () => {
                     <Navbar.Collapse id="navbarScroll">
                         <Nav>
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="#2">Productos</Nav.Link>
+                            <Nav.Link href="/productos">Productos</Nav.Link>
                             <Nav.Link href="#3">Pedidos</Nav.Link>
                             <NavDropdown title="Area Personal" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="#4">Area Personal</NavDropdown.Item>
