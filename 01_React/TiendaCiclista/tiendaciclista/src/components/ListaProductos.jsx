@@ -145,7 +145,7 @@ const ListaProductos = () => {
                 </thead>
                 <tbody id='pare'>
                     {productos.map(producto => {
-                        // <Producto variant={producto} />
+                        <Producto variant={producto} />
                         return (
                             <tr key={producto._id}>
                                 <td>{producto.nombre}</td>
